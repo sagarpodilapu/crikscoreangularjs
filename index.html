@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-ng-app="crikscoreApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="Content/test.css">
+  </head>
+  <body data-ng-init="">
+    <nav class="navbar navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">crikscore</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" data-ng-controller="navbarController">
+          <a class="nav-item nav-link" href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#!/scorecard" data-ng-class="{'active':getClass('/scorecard')}">Scorecard</a>
+          <a class="nav-item nav-link" href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <div class="" data-ng-view="">
+
+      </div>
+    </div>
+    <script src="Scripts/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/controllers.js"></script>
+    <script src="app/services/matchService.js"></script>
+    <script src="app/services/scoreService.js"></script>
+    <script src="app/directives/animatedView.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script> -->
+    <!-- <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD-uEpKfJETIwUdBTaKMJ-MEeJ3AQ4vkYA",
+        authDomain: "crickscore-4022b.firebaseapp.com",
+        databaseURL: "https://crickscore-4022b.firebaseio.com",
+        storageBucket: "crickscore-4022b.appspot.com",
+        messagingSenderId: "124167256583"
+      };
+      firebase.initializeApp(config);
+    </script> -->
+  </body>
+</html>
