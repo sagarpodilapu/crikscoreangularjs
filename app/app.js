@@ -6,7 +6,7 @@
   /partials
   /views
 */
-var app = angular.module("crikscoreApp",['ngRoute']);
+var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics']);
 app.config(function ($routeProvider){
   $routeProvider
   .when('/addMatch',{
@@ -23,3 +23,7 @@ app.config(function ($routeProvider){
   })
   .otherwise({ redirectTo: '/addMatch'});
 });
+app.config(['AnalyticsProvider', function (AnalyticsProvider) {
+   // Add configuration code as desired
+   AnalyticsProvider.setAccount('UA-96467533-1');
+}]).run(['Analytics', function(Analytics) { }]);
