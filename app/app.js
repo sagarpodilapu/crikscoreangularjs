@@ -26,4 +26,5 @@ app.config(function ($routeProvider){
 app.config(['AnalyticsProvider', function (AnalyticsProvider) {
    // Add configuration code as desired
    AnalyticsProvider.setAccount('UA-96467533-1');
+   AnalyticsProvider.setDomainName('https://www.crikscore.com/');
 }]).run(['Analytics', function(Analytics) { }]);
