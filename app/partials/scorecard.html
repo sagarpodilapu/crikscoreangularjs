@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-primary btn-sm" data-ng-click = "currentRun(event)" value="5">5</button>
         <button type="button" class="btn btn-success btn-sm" data-ng-click = "currentRun(event)" value="6">6</button>
       </div>
-      <div class="current-action-inner">
+      <div class="current-action-inner current-batsman-name">
         <label class="custom-control custom-radio">
           <input id="wide-ball" name="radio" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="wide" disabled>
           <span class="custom-control-indicator"></span>
@@ -22,10 +22,15 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">NoBall</span>
         </label>
-        <label class="custom-control custom-checkbox">
-          <input id="wicket" type="checkbox" class="custom-control-input" data-ng-click = "addWicket(event)" value="out" disabled>
+        <label class="custom-control custom-radio">
+          <input id="wicket" name="radio" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addWicket" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Out</span>
+        </label>
+        <label class="custom-control custom-radio">
+          <input id="run-out" name="radio" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addRunOut" disabled>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Run Out</span>
         </label>
       </div>
       <div class="">
@@ -39,7 +44,7 @@
           <th>Overs</th>
           <th>Last 6 balls</th>
         </tr>
-        <tr>
+        <tr class="current-batsman-name">
           <td>{{ total_runs}}/{{ wickets }}</td>
           <td>{{ current_over }}</td>
           <td>
@@ -61,8 +66,8 @@
             <th>6s</th>
             <th>S/R</th>
           </tr>
-          <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info">
-            <td><span class="{{ batsman.class }}">{{ batsman.name }}</span></td>
+          <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info {{ batsman.class }}">
+            <td id="{{ batsman.class }}">{{ batsman.name }}</td>
             <td>{{ batsman.runs }}</td>
             <td>{{ batsman.balls }}</td>
             <td>{{ batsman.fours }}</td>
@@ -93,8 +98,8 @@
           <tr>
             <td class="previous-bowler-name">Kaali</td><td>1</td><td>5</td><td>0</td><td>5.8</td><td>0</td>
           </tr> -->
-          <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info">
-            <td><span class="{{ bowler.class }}">{{ bowler.name }}</span></td>
+          <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info {{ bowler.class }}">
+            <td id="{{ bowler.class }}">{{ bowler.name }}</td>
             <td>{{ bowler.overs }}</td>
             <td>{{ bowler.runs }}</td>
             <td>{{ bowler.wks }}</td>

@@ -8,19 +8,24 @@
   </head>
   <body data-ng-init="">
     <nav class="navbar navbar-inverse bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <a class="navbar-brand" href="#">crikscore</a>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav" data-ng-controller="navbarController">
           <a class="nav-item nav-link" href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="#!/scorecard" data-ng-class="{'active':getClass('/scorecard')}">Scorecard</a>
           <a class="nav-item nav-link" href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a>
         </div>
-      </div>
+      </div> -->
     </nav>
     <div>
+      <ol class="inner-nav">
+        <li class="add-match-li"><a href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match</a></li>
+        <li class="add-match-li"><a href="#!/scorecard" data-ng-class="{'active':getClass('/scorecard')}">Scorecard</a></li>
+        <li class="add-match-li"><a href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a></li>
+      </ol>
       <div class="" data-ng-view="">
 
       </div>

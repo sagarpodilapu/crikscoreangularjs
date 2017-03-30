@@ -1,13 +1,16 @@
+body{
+    background:#f8f8f8;
+}
 .teams-radio {
     margin-left: 1em;
     margin-top: 0.2em;
 }
 .common-sc{
-  margin: 1em;
-  padding: 1em;
-  background: #f8f8f8;
-  border: thin solid #000;
-  border-radius: 10px;
+  margin: 5px;
+    padding: 1em;
+    background: #fff;
+    border: thin solid #000;
+    border-radius: 5px;
 }
 .past-balls span{
   display: inline-block;
@@ -16,9 +19,9 @@
   text-align: center;
 }
 .current-action-inner {
-    margin-bottom: 1em;
-    padding-bottom: 10px;
-    border-bottom: thin solid #eee;
+  margin-bottom: 5px;
+padding-bottom: 5px;
+border-bottom: thin solid #eee;
 }
 span.add-run-text {
     font-weight: 700;
@@ -35,4 +38,30 @@ span.add-run-text {
 
 .table{
   margin:0px;
+}
+
+ol.inner-nav {
+    list-style: none;
+}
+
+li.add-match-li {
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 5px;
+}
+
+li.add-match-li a.active{
+  background: #eee;
+}
+
+h5.main-heading-view {
+    border-bottom: thin solid #eee;
+    padding-bottom: 10px;
+}
+.current-batsman-name, .current-bowler-name, .add-run-text {
+  font-weight: 700;
+}
+.scorecard-details th{
+  color: #6f6f6f;
+  font-weight: 300;
 }
