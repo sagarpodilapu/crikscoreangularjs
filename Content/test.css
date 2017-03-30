@@ -65,3 +65,9 @@ h5.main-heading-view {
   color: #6f6f6f;
   font-weight: 300;
 }
+
+.who-is-runout {
+    text-align: center;
+    display: inline-block;
+    width: 65%;
+}
