@@ -5,6 +5,7 @@
     <title>CrikScore - Add score to any match</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Josefin+Sans|Montserrat|Nunito|Open+Sans|Oxygen|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="Content/test.css">
     <meta name="google-site-verification" content="q3HiXDXBXq9RxV4ElUULIBqLxugK7bhQuevyz2H-y5Q" />
   </head>
@@ -13,7 +14,8 @@
       <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> -->
-      <a class="navbar-brand" href="#">crikscore</a>
+      <a class="navbar-brand" href="#">crikScore <span class='caption-text'>For the love of cricket</span></a>
+
       <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav" data-ng-controller="navbarController">
           <a class="nav-item nav-link" href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match <span class="sr-only">(current)</span></a>
@@ -23,11 +25,11 @@
       </div> -->
     </nav>
     <div>
-      <ol class="inner-nav">
+      <!-- <ol class="inner-nav">
         <li class="add-match-li"><a href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match</a></li>
-        <li class="add-match-li"><a href="#!/scorecard" data-ng-class="{'active':getClass('/scorecard')}">Scorecard</a></li>
+        <li class="add-match-li"><a href="#!/scorecard" data-ng-class="{'active':getClass('/{{ matchDetails[0].matchId }}/scorecard')}">Scorecard</a></li>
         <li class="add-match-li"><a href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a></li>
-      </ol>
+      </ol> -->
       <div class="" data-ng-view="">
 
       </div>

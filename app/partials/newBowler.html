@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="new-player">
+    <h5>Select New Bowler</h5>
+    <div class="col-sm-10">
+      <div class="form-check" data-ng-repeat = "player in players[1]">
+        <label class="form-check-label">
+          <input data-ng-click="selectedPlayer(player.playerId)" class="form-check-input" type="radio" name="bowler" id="{{ player.playerName  }}" value="{{ player.playerName  }}">
+          {{ player.playerName  }}
+        </label>
+      </div>
+      <div class="form-group row right-most-btn">
+        <button class='btn btn-primary' data-ng-click="startInnings()">Start Innings</button>
+      </div>
+    </div>
+  </div>
+</div>

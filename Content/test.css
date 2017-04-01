@@ -1,5 +1,15 @@
 body{
     background:#f8f8f8;
+    font-family: 'Droid Serif', serif;
+    /*
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif; //headings
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Droid Serif', serif; //body
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'Nunito', sans-serif; //logo
+    font-family: 'Josefin Sans', sans-serif; //buttons
+    */
 }
 .teams-radio {
     margin-left: 1em;
@@ -20,8 +30,8 @@ body{
 }
 .current-action-inner {
   margin-bottom: 5px;
-padding-bottom: 5px;
-border-bottom: thin solid #eee;
+  padding-bottom: 5px;
+  border-bottom: thin solid #eee;
 }
 span.add-run-text {
     font-weight: 700;
@@ -57,17 +67,72 @@ li.add-match-li a.active{
 h5.main-heading-view {
     border-bottom: thin solid #eee;
     padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 .current-batsman-name, .current-bowler-name, .add-run-text {
   font-weight: 700;
 }
+
 .scorecard-details th{
   color: #6f6f6f;
   font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .who-is-runout {
     text-align: center;
-    display: inline-block;
+    display: none;
     width: 65%;
+}
+.new-player {
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: thin solid #ddd;
+    margin-top: 10px;
+}
+
+.team-one-details {
+    border-bottom: thin solid #eee;
+    margin-bottom: 10px;
+    background: #fff;
+    padding: 10px;
+}
+
+.team-one-heading.ng-binding {
+    font-weight: 700;
+    border-bottom: thin solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.right-most-btn {
+  position: absolute;
+  right: 30px;
+}
+
+span.caption-text {
+    font-size: 10px;
+    display: inline-block;
+}
+
+a.navbar-brand {
+    font-family: 'Nunito', sans-serif;
+}
+
+.btn{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.new-player h5 {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: thin solid #eee;
+    color: #6f6f6f;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input[type=text], .form-check.form-check-inline, label.custom-control.custom-radio, .form-check.ng-scope {
+    font-family: 'Raleway', sans-serif;
 }

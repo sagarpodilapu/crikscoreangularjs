@@ -1,138 +1,193 @@
   var controllers = {};
-  controllers.addMatchController = function($scope,matchService) {
+  controllers.addMatchController = function($scope, $location, $routeParams, matchService) {
+  $scope.possible_overs = [];
+  $scope.possible_players = [];
+  for(var i=3;i<=11;i++) {
+    $scope.possible_players.push(i);
+  }
+  for(var i=5;i<=20;i++) {
+    $scope.possible_overs.push(i);
+  }
+  var param1 = $routeParams.matchId;
   init();
   function init(){
     $scope.players = matchService.getPlayers();
-    $scope.matchId = matchService.getMatchId();
-    $scope.teams = matchService.getTeams();
+    // matchService.getPlayers().then(function(response){console.log(response)},function(err){console.log(err)});
+    $scope.matchDetails = matchService.getMatchDetails();
   }
-  $scope.teamId = 1;
-  $scope.bowlingStyles = [
-    {
-      id: 'RF',
-      display:'Right Arm Fast',
-    },
-    {
-      id: 'RMF',
-      display:'Right Arm Medium',
 
-    },
-    {
-      id: 'LF',
-      display:'Left Arm Fast',
-    },
-    {
-      id: 'LMF',
-      display:'Left Arm Medium',
-    },
-    {
-      id: 'OS',
-      display:'Offspin',
-    },
-    {
-      id: 'LS',
-      display:'Legspin',
-    },
-    {
-      id: 'LOS',
-      display:'Left Arm Spin',
-    },
-  ];
-  $scope.insertPlayer = function(){
-    var playerName = $scope.newPlayer.name;
-    var playerBattingStyle = $scope.newPlayer.battingStyle;
-    var playerBowlingStyle = $scope.newPlayer.bowlingStyle;
-    var playerTeamId = $scope.newPlayer.teamId;
-    // var teamMatchId = $scope.newPlayer.matchId;
-    matchService.insertPlayer(playerName,playerBattingStyle,playerBowlingStyle,playerTeamId,$scope.matchId);
-    $scope.newPlayer.name = '';
-    $scope.newPlayer.battingStyle = '';
-    $scope.newPlayer.bowlingStyle = '';
-    $scope.newPlayer.teamId = '';
-    $scope.newPlayer.matchId = '';
-  };
+  $scope.insertMatch = function(){
+    var teamOneName = $scope.newMatch.teamOneName;
+    var teamTwoName = $scope.newMatch.teamTwoName;
+    var toss = $scope.newMatch.toss;
+    var batting = $scope.newMatch.batting;
+    var total_players = parseInt($scope.newMatch.totalPlayers);
+    var total_overs = parseInt($scope.newMatch.totalOvers);
+
+    $scope.batting_team = batting;
+    if(teamOneName == batting) {
+      $scope.bowling_team = teamTwoName;
+    }else {
+      $scope.bowling_team = teamOneName;
+    }
+    matchService.insertMatch(teamOneName, teamTwoName, toss, batting, total_players, total_overs);
+    $scope.newMatch.teamOneName = 'teamOne';
+    $scope.newMatch.teamTwoName = 'teamTwo';
+    $scope.newMatch.toss = '';
+    $scope.newMatch.batting = '';
+    var matchId = $scope.matchDetails[0].matchId;
+    $location.path('/'+matchId+'/addPlayers');
+  }
+
+  $scope.startMatch = function(){
+    var matchId = $scope.matchDetails[0].matchId;
+    $location.path('/'+matchId+'/selectBatsman');
+  }
 
   $scope.deletePlayer = function(id){
     matchService.deletePlayer(id);
   }
 };
 
-controllers.scorecardController = function($scope,scoreService) {
+controllers.scorecardController = function($scope, $routeParams, $location, scoreService) {
 init();
 
 //$scope.current_run = 0;
-$scope.runOutChoice = '';
-$scope.extra_run = 0;
-$scope.total_runs = 0;
-$scope.possible_runs = [0,1,2,3,4,5,6];
-$scope.current_ball_number = 0;
-$scope.last_ten_balls_events = [];
-$scope.wickets = 0;
-$scope.current_over = '0.0';
-$scope.current_indi_batsman_stats = [
-  {
-    class: 'current-batsman-name',
-    name: 'Sagar',
-    runs:0,
-    balls:0,
-    fours:0,
-    sixes:0,
-    out:false,
-    strike_rate: 0,
-  },
-  {
-    class: 'non-striker-name',
-    name: 'Ashish',
-    runs: 0,
-    balls: 0,
-    fours: 0,
-    sixes: 0,
-    out: false,
-    strike_rate: 0,
-  },
-  ];
-  $scope.current_indi_bowler_stats = [
-    {
-      class: 'current-bowler-name',
-      name: 'Nagaraj',
-      balls: 0,
-      overs: 0,
-      runs: 0,
-      wks: 0,
-      wides: 0,
-      noballs: 0,
-      economy_rate: 0,
-      strike_rate: 0,
-    },
-    {
-      class: 'previous-bowler-name',
-      name: 'Kaali',
-      balls:0,
-      overs:0,
-      runs:0,
-      wks:0,
-      wides: 0,
-      noballs:0,
-      economy_rate: 0,
-      strike_rate: 0,
-    }];
-    $scope.batsmanRadio = false;
+var param1 = $routeParams.matchId;
 
 function init(){
   $scope.score = scoreService.getScore();
-  $scope.current_score = scoreService.getCurrentScore();
-  $scope.current_ball = scoreService.getCurrentBall();
+  $scope.current_ball_number = scoreService.getCurrentBallNumber();
+  $scope.players = scoreService.getPlayers();
+  $scope.matchDetails = scoreService.getMatchDetails();
+  $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
+  $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
+  $scope.lastEvents = scoreService.getLastTenBallEvents();
+  $scope.total_runs = scoreService.getTotalRuns();
+  $scope.wickets = scoreService.getWickets();
+  $scope.current_over = scoreService.getCurrentOver();
+  $scope.next_ball = scoreService.getNextBall();
+  $scope.extra_run = 0;
+  $scope.extra_type = '';
+  $scope.extra_type_id = '';
+  $scope.runOutChoice = '';
+  $scope.possible_runs = [0,1,2,3,4,5,6];
+  $scope.batsmanRadio = false;
+  $scope.out = false;
+  $scope.whoIsOut = '';
+  $scope.lastSixBalls = $scope.lastEvents;
+}
+
+$scope.selectedPlayer = function(player_id){
+  $scope.currentPlayer = player_id;
+}
+
+$scope.selectedBatsman = function(player_id){
+  $scope.newBatsman = player_id;
+}
+
+$scope.selectedStriker = function(player_id){
+  $scope.newStriker = player_id;
+}
+
+$scope.selectedBowler = function(player_id){
+  $scope.newBowler = player_id;
+}
+
+$scope.selectStriker = function(){
+  for(var batsman_index in $scope.players[0]) {
+    if($scope.newBatsman == $scope.players[0][batsman_index].playerId) {
+      batsman_name = $scope.players[0][batsman_index].playerName;
+    }
+  }
+  var batsman_class = 'current-batsman-name';
+  scoreService.insertBatsman($scope.newBatsman, batsman_name, batsman_class);
+  var matchId = $scope.matchDetails[0].matchId;
+  // if($scope.out) {
+  //     $location.path('/'+matchId+'/scorecard');
+  // }
+
+}
+
+$scope.changeBatsman = function(){
+  for(var batsman_index in $scope.players[0]) {
+    if($scope.currentPlayer == $scope.players[0][batsman_index].playerId) {
+      batsman_name = $scope.players[0][batsman_index].playerName;
+    }
+  }
+  var batsman_class = 'current-batsman-name';
+  scoreService.insertBatsman($scope.currentPlayer, batsman_name, batsman_class);
+  var matchId = $scope.matchDetails[0].matchId;
+  $location.path('/'+matchId+'/scorecard');
+}
+
+$scope.selectBowler = function(){
+  for(var batsman_index in $scope.players[0]) {
+    if($scope.newStriker == $scope.players[0][batsman_index].playerId) {
+      batsman_name = $scope.players[0][batsman_index].playerName;
+    }
+  }
+  var batsman_class = 'non-striker-name';
+  scoreService.insertBatsman($scope.newStriker, batsman_name, batsman_class);
+  var matchId = $scope.matchDetails[0].matchId;
+}
+
+$scope.startInnings = function(){
+  $scope.selectStriker();
+  $scope.selectBowler();
+  for(var bowler_index in $scope.players[1]) {
+    if($scope.newBowler == $scope.players[1][bowler_index].playerId) {
+      bowler_name = $scope.players[1][bowler_index].playerName;
+    }
+  }
+  var bowler_class = 'current-bowler-name';
+  scoreService.insertBowler($scope.newBowler, bowler_name, bowler_class);
+  var matchId = $scope.matchDetails[0].matchId;
+  $location.path('/'+matchId+'/scorecard');
 }
 
 $scope.insertScore = function(){
-  var current_run_local = $scope.current_run;
-
+  var current_event = '';
+  current_event = $scope.current_run;
+  $scope.current_indi_batsman_stats[0].runs += $scope.current_run;
+  $scope.current_indi_bowler_stats[0].runs += $scope.current_run;
   $scope.current_ball_number++;
 
+  if($scope.extra_run == 1) {
+    if($scope.extra_type_id != 'no-extra') {
+        current_event += $scope.extra_type[0];
+        $scope.current_indi_bowler_stats[0].runs += $scope.extra_run;
+        $scope.current_ball_number--;
+        $scope.current_indi_bowler_stats[0].balls--;
+    }
+  }
+
+  if($scope.out) {
+    current_event += 'wk';
+  }
+
+  $scope.lastEvents.unshift(current_event);
+  $scope.lastSixBalls = $scope.lastEvents;
+  if($scope.lastEvents.length > 6) {
+      $scope.lastSixBalls.pop();
+  }
+
+  $scope.current_indi_batsman_stats[0].balls++;
+  $scope.current_indi_bowler_stats[0].balls++;
+
+  var strike_rate = $scope.current_indi_batsman_stats[0].runs/$scope.current_indi_batsman_stats[0].balls;
+  strike_rate = strike_rate.toFixed(2);
+  $scope.current_indi_batsman_stats[0].strike_rate = strike_rate*100;
+
+  if($scope.current_indi_bowler_stats[0].balls === 0) {
+      $scope.current_indi_bowler_stats[0].economy_rate = '-';
+  }else {
+    $scope.current_indi_bowler_stats[0].economy_rate = (($scope.current_indi_bowler_stats[0].runs/$scope.current_indi_bowler_stats[0].balls)*6).toFixed(2);
+  }
+
+  var current_run_local = $scope.current_run;
+
   var current_ball_local = $scope.current_ball_number;
-  var next_ball = current_ball_local + 1;
-  $scope.current_over = Math.floor($scope.current_ball_number/6) + "." + $scope.current_ball_number%6;
-  $scope.next_ball = Math.floor(next_ball/6) + "." + next_ball%6;
 
   if(current_run_local == 4) {
     $scope.current_indi_batsman_stats[0].fours++;
@@ -142,14 +197,6 @@ $scope.insertScore = function(){
     $scope.current_indi_batsman_stats[0].sixes++;
   }
 
-  var extra_type_checked = $('#'+$scope.extra_type_id).prop('checked');
-
-  if(!extra_type_checked){
-    $scope.extra_type = '';
-    $scope.out = false;
-    $scope.extra_run = 0;
-  }
-  $scope.current_ball_event();
   var current_bowler_balls = $scope.current_indi_bowler_stats[0].balls;
   $scope.current_indi_bowler_stats[0].overs = Math.floor(current_bowler_balls/6) + "." + current_bowler_balls%6;
 
@@ -157,47 +204,99 @@ $scope.insertScore = function(){
     $scope.changeStrike();
   }
 
-  if(current_ball_local % 6 == 0) {
-    $scope.changeStrike();
-    $scope.changeBowler();
+  if(current_ball_local % 6 == 0 && current_ball_local > 0) {
+    if($scope.current_indi_bowler_stats.length == 2) {
+      $scope.changeBowler();
+      $scope.changeStrike();
+    }else{
+      var matchId = $scope.matchDetails[0].matchId;
+      $location.path('/'+matchId+'/changeBowler');
+    }
   }
   $scope.total_runs += current_run_local + $scope.extra_run;
-
-  var score_details = [
-    {
-      current_ball_number : $scope.current_ball_number,
-      runs : current_run_local,
-      total_runs : $scope.total_runs,
-      last_ten_bals: $scope.last_ten_balls_events,
-      batsman : $scope.current_indi_batsman_stats[0].name,
-      batsman_runs: $scope.batsman_runs,
-      non_striker : $scope.current_indi_batsman_stats[1].name,
-      non_striker_runs : $scope.non_striker_runs,
-      bowler : $scope.current_indi_bowler_stats[0].name,
-      previous_bowler : $scope.current_indi_bowler_stats[1].name,
-      extra: $scope.extra_type,
-      out:$scope.out,
-      wickets:$scope.wickets,
-      current_over:$scope.current_over,
+  if($scope.out){
+    if($scope.extra_type_id == 'wicket') {
+      $scope.current_indi_bowler_stats[0].wks++;
     }
-  ];
+    $scope.wickets++;
+    $scope.current_indi_batsman_stats[0].out = $scope.out;
+  }
+  $scope.current_over = Math.floor($scope.current_ball_number/6) + "." + $scope.current_ball_number%6;
+  if($scope.current_indi_bowler_stats.length == 2){
+    var score_details = [
+      {
+        current_ball_number : $scope.current_ball_number,
+        runs : current_run_local,
+        total_runs : $scope.total_runs,
+        last_ten_bals: $scope.lastEvents,
+        batsman : $scope.current_indi_batsman_stats[0].name,
+        batsman_runs: $scope.current_indi_batsman_stats[0].runs,
+        non_striker : $scope.current_indi_batsman_stats[1].name,
+        non_striker_runs : $scope.current_indi_batsman_stats[1].runs,
+        bowler : $scope.current_indi_bowler_stats[0].name,
+        previous_bowler : $scope.current_indi_bowler_stats[1].name,
+        extra: $scope.extra_type,
+        out:$scope.out,
+        wickets:$scope.wickets,
+        current_over:$scope.current_over,
+      }
+    ];
+  }else{
+    var score_details = [
+      {
+        current_ball_number : $scope.current_ball_number,
+        runs : current_run_local,
+        total_runs : $scope.total_runs,
+        last_ten_bals: $scope.lastEvents,
+        batsman : $scope.current_indi_batsman_stats[0].name,
+        batsman_runs: $scope.current_indi_batsman_stats[0].runs,
+        non_striker : $scope.current_indi_batsman_stats[1].name,
+        non_striker_runs : $scope.current_indi_batsman_stats[1].runs,
+        bowler : $scope.current_indi_bowler_stats[0].name,
+        previous_bowler : '-',
+        extra: $scope.extra_type,
+        out:$scope.out,
+        wickets:$scope.wickets,
+        current_over:$scope.current_over,
+      }
+    ];
+  }
+  scoreService.insertScore(score_details);
+  scoreService.updateCurrentBatsmen($scope.current_indi_batsman_stats[0]);
+  scoreService.updateCurrentBowler($scope.current_indi_bowler_stats[0]);
+  scoreService.updateLastTenBalls($scope.lastEvents);
+  if($scope.out) {
+    console.log($scope.current_indi_batsman_stats);
+    scoreService.updatePlayers($scope.whoIsOut);
+  }
+  $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
+  $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
+  $scope.total_runs = scoreService.getTotalRuns();
+  $scope.wickets = scoreService.getWickets();
+  $scope.current_ball_number = scoreService.getCurrentBallNumber();
+  $scope.current_over = scoreService.getCurrentOver();
+  $scope.next_ball = scoreService.getNextBall();
   $('input').prop('checked',false).prop('disabled',true);
   $scope.extra_type = '';
   $scope.out = false;
   $scope.extra_run = 0;
-  // var wide = $scope.currentBall.wide;
-  // var noball = $scope.currentBall.noball;
-  // var out = $scope.currentBall.out;
-  // var out_type = $scope.currentBall.out_type;
-  // var fielder = $scope.currentBall.fielder;
-  // var batsman = $scope.currentBall.batsman;
-  // var bowler = $scope.currentBall.bowler;
+  $('.who-is-runout').css('display','inline-block');
+
 };
 
-$scope.changeStrike = function(){
-  $scope.current_indi_batsman_stats[1].class = 'current-batsman-name';
-  $scope.current_indi_batsman_stats[0].class = 'non-striker-name';
-  $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
+$scope.bowlerChange = function(){
+  for(var bowler_index in $scope.players[1]) {
+    if($scope.currentPlayer == $scope.players[1][bowler_index].playerId) {
+      bowler_name = $scope.players[1][bowler_index].playerName;
+    }
+  }
+  var bowler_class = 'current-bowler-name';
+  scoreService.insertBowler($scope.currentPlayer, bowler_name, bowler_class);
+  var matchId = $scope.matchDetails[0].matchId;
+  $scope.changeBowler();
+  // $scope.changeStrike();
+  console.log('bowlerChange');
+  $location.path('/'+matchId+'/scorecard');
 }
 
 $scope.changeBowler = function(){
@@ -205,82 +304,22 @@ $scope.changeBowler = function(){
   $scope.current_indi_bowler_stats[0].class = 'previous-bowler-name';
   $scope.current_indi_bowler_stats = $scope.current_indi_bowler_stats.reverse();
   $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
+  console.log('changeBowler');
 }
 
-$scope.findIndexByBatsmanName = function(batsman_name){
-  for(var i in $scope.current_indi_batsman_stats){
-    if($scope.current_indi_batsman_stats[i].name == batsman_name) {
-      return i;
-    }
-  }
+$scope.changeStrike = function(){
+  $scope.current_indi_batsman_stats[1].class = 'current-batsman-name';
+  $scope.current_indi_batsman_stats[0].class = 'non-striker-name';
+  $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
+  console.log('changeStrike');
 }
 
-$scope.findIndexByBowlerName = function(bowler_name){
-  for(var i in $scope.current_indi_bowler_stats){
-    if($scope.current_indi_bowler_stats[i].name == bowler_name) {
-      return i;
-    }
-  }
-}
-
-$scope.current_ball_event = function(){
-  var current_batsman = $scope.current_indi_batsman_stats[0];
-  var current_bowler = $scope.current_indi_bowler_stats[0];
-  var ball_incremented = false;
-  var legal_delivery = true;
-  var legal_run = true;
-  var extra_run = $scope.extra_run;
-  var current_run_local = $scope.current_run;
-  var extra_type = $scope.extra_type;
-  var out = $scope.out;
-  var last_ten_balls = '';
-  var current_ball_number_local = $scope.current_ball_number;
-  if(current_run_local >= 0) {
-    last_ten_balls += current_run_local;
-    current_bowler.runs += current_run_local ;
-    current_batsman.runs += current_run_local;
-
-    current_bowler.balls++;
-    current_batsman.balls++;
-    var ball_incremented = true;
-  }
-  if(extra_run) {
-    last_ten_balls += extra_type[0];
-    current_bowler.runs += extra_run ;
-    current_bowler.balls--;
-  }
-  if(out) {
-    last_ten_balls += 'wk';
-    if(!ball_incremented) {
-        current_bowler.balls++;
-        current_batsman.balls++;
-    }
-  }
-  $scope.last_ten_balls_events.unshift(last_ten_balls);
-  if($scope.last_ten_balls_events.length > 6) {
-    $scope.last_ten_balls_events.pop();
-  }
-  var something = current_batsman.runs/current_batsman.balls;
-  current_batsman.strike_rate = (something.toFixed(2))*100;
-  // current_bowler.strike_rate = (current_bowler.wks/current_bowler.balls).toFixed(2)*100;
-  if(current_bowler.balls === 0) {
-      current_bowler.economy_rate = '-';
-  }else {
-    current_bowler.economy_rate = ((current_bowler.runs/current_bowler.balls)*6).toFixed(2);
-  }
-
-  if($scope.out){
-    if($scope.extra_type_id == 'wicket') {
-      current_bowler.wks++;
-    }
-    $scope.wickets++;
-  }
-}
 $scope.currentRun = function(element){
   var current_run = event.target.value;
   $scope.current_run = parseInt(current_run);
   $('input').prop('disabled',false);
 }
+
 $scope.addExtra = function(element){
     if($scope.current_ball_number > 0){
         $scope.current_ball_number--;
@@ -293,14 +332,30 @@ $scope.addExtra = function(element){
 $scope.addWicket = function(element){
   $scope.out = true;
   $scope.extra_type_id = event.target.id;
-  if(event.target.id == 'run-out'){
-    $scope.batsmanRadio = true;
-    var html = '';
-    $scope.runOutChoice = html;
-  }else{
-    $scope.runOutChoice = '';
+  $scope.whichBatsman($scope.current_indi_batsman_stats[0].playerId);
+  switch(event.target.id){
+    case 'wicket':
+      $scope.current_indi_bowler_stats[0].wkt++;
+      $scope.out = true;
+      break;
+    case 'run-out':
+      $('.who-is-runout').css('display','inline-block');
+      $scope.out = true;
+      break;
+    case 'not-out':
+      if($scope.out) {
+          $scope.current_indi_bowler_stats[0].wkt--;
+          $scope.out = false;
+      }
+      break;
+    case 'retired':
+      $('.who-is-runout').css('display','inline-block');
+      if($scope.out) {
+          $scope.current_indi_bowler_stats[0].wkt--;
+      }
+      $scope.out = true;
+    break;
   }
-  // console.log($scope.extra_type_id);
 }
 
 $scope.whichBatsman = function(out_batsman){
