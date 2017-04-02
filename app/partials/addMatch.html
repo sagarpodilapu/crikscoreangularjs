@@ -1,7 +1,7 @@
 <div class='container scorecard-details'>
   <div class="new-player">
     <h5>Add Teams</h5>
-    <div class="form-group row">
+    <!-- <div class="form-group row">
       <label for="{{ newMatch.teamOneName}}" class="col-4 col-form-label text-right">Team One:</label>
       <div class="col-8">
         <input name="teamOne" class="form-control form-control-sm" data-ng-model = "newMatch.teamOneName" type="text" value="teamOne" id="{{ newMatch.teamOneName}}" placeholder="Enter Team Name">
@@ -12,7 +12,7 @@
       <div class="col-8">
         <input name="teamTwo" class="form-control form-control-sm" data-ng-model = "newMatch.teamTwoName" type="text" value="teamTwo" id="{{ newMatch.teamTwoName }}" placeholder="Enter Team Name">
       </div>
-    </div>
+    </div> -->
     <div class="form-group row">
       <label for="totalPlayers" class="col-4 col-form-label text-right">Players / Team:</label>
       <div class="col-8">
@@ -34,14 +34,14 @@
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ newMatch.teamOneName }}" value="{{ newMatch.teamOneName }}" > {{ newMatch.teamOneName }}
+            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ teamNames[0] }}" value="{{ teamNames[0] }}" > {{ teamNames[0] }}
           </label>
         </div>
       </div>
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ newMatch.teamTwoName }}" value="{{ newMatch.teamTwoName }}" > {{ newMatch.teamTwoName }}
+            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ teamNames[1] }}" value="{{ teamNames[1] }}" > {{ teamNames[1] }}
           </label>
         </div>
       </div>
@@ -51,14 +51,14 @@
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ newMatch.teamOneName }}" value="{{ newMatch.teamOneName }}" > {{ newMatch.teamOneName }}
+            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ teamNames[0] }}" value="{{ teamNames[0] }}" > {{ teamNames[0] }}
           </label>
         </div>
       </div>
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ newMatch.teamTwoName }}" value="{{ newMatch.teamTwoName }}" > {{ newMatch.teamTwoName }}
+            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ teamNames[1] }}" value="{{ teamNames[1] }}" > {{ teamNames[1] }}
           </label>
         </div>
       </div>

@@ -5,38 +5,39 @@
   for(var i=5;i<=11;i++) {
     $scope.possible_players.push(i);
   }
-  for(var i=8;i<=20;) {
-    $scope.possible_overs.push(i);
-    i = i+2;
-  }
+  $scope.possible_overs = [6,7,8,10,12,14,15,16,18,20];
+  // for(var i=6;i<=20;) {
+  //   $scope.possible_overs.push(i);
+  //   i = i+2;
+  // }
   var param1 = $routeParams.matchId;
   init();
   function init(){
     $scope.players = matchService.getPlayers();
     $scope.matchDetails = matchService.getMatchDetails();
+    $scope.teamNames = matchService.getTeams();
+    console.log($scope.teamNames);
   }
 
   $scope.insertMatch = function(){
-    var teamOneName = $scope.newMatch.teamOneName;
-    var teamTwoName = $scope.newMatch.teamTwoName;
+    // var teamOneName = $scope.newMatch.teamOneName;
+    // var teamTwoName = $scope.newMatch.teamTwoName;
     var toss = $scope.newMatch.toss;
     var batting = $scope.newMatch.batting;
     var total_players = parseInt($scope.newMatch.totalPlayers);
     var total_overs = parseInt($scope.newMatch.totalOvers);
 
     $scope.batting_team = batting;
-    if(teamOneName == batting) {
-      $scope.bowling_team = teamTwoName;
+    if($scope.teamNames[0] == batting) {
+      $scope.bowling_team = $scope.teamNames[1];
     }else {
-      $scope.bowling_team = teamOneName;
+      $scope.bowling_team = $scope.teamNames[0];
     }
-    matchService.insertMatch(teamOneName, teamTwoName, toss, batting, total_players, total_overs);
-    $scope.newMatch.teamOneName = 'teamOne';
-    $scope.newMatch.teamTwoName = 'teamTwo';
+    matchService.insertMatch($scope.teamNames[0], $scope.teamNames[1], toss, batting, total_players, total_overs);
     $scope.newMatch.toss = '';
     $scope.newMatch.batting = '';
     var matchId = $scope.matchDetails[0].matchId;
-    $location.path('/'+matchId+'/addPlayers');
+    $location.path('/'+matchId+'/scorecard');
   }
 
   $scope.startMatch = function(){
@@ -71,7 +72,7 @@ function init(){
   $scope.extra_type = '';
   $scope.extra_type_id = '';
   $scope.runOutChoice = '';
-  $scope.possible_runs = [0,1,2,3,4,5,6];
+  $scope.possible_runs = ['.',1,2,3,4,5,6];
   $scope.batsmanRadio = false;
   $scope.out = false;
   $scope.whoIsOut = '';
@@ -82,30 +83,6 @@ $scope.selectedPlayer = function(player_id){
   $scope.currentPlayer = player_id;
 }
 
-$scope.selectedBatsman = function(player_id){
-  $scope.newBatsman = player_id;
-}
-
-$scope.selectedStriker = function(player_id){
-  $scope.newStriker = player_id;
-}
-
-$scope.selectedBowler = function(player_id){
-  $scope.newBowler = player_id;
-}
-
-$scope.selectStriker = function(){
-  for(var batsman_index in $scope.players[0]) {
-    if($scope.newBatsman == $scope.players[0][batsman_index].playerId) {
-      batsman_name = $scope.players[0][batsman_index].playerName;
-    }
-  }
-  var batsman_class = 'current-batsman-name';
-  scoreService.insertBatsman($scope.newBatsman, batsman_name, batsman_class);
-  var matchId = $scope.matchDetails[0].matchId;
-
-}
-
 $scope.changeBatsman = function(){
   for(var batsman_index in $scope.players[0]) {
     if($scope.currentPlayer == $scope.players[0][batsman_index].playerId) {
@@ -114,31 +91,6 @@ $scope.changeBatsman = function(){
   }
   var batsman_class = 'current-batsman-name';
   scoreService.insertBatsman($scope.currentPlayer, batsman_name, batsman_class);
-  var matchId = $scope.matchDetails[0].matchId;
-  $location.path('/'+matchId+'/scorecard');
-}
-
-$scope.selectBowler = function(){
-  for(var batsman_index in $scope.players[0]) {
-    if($scope.newStriker == $scope.players[0][batsman_index].playerId) {
-      batsman_name = $scope.players[0][batsman_index].playerName;
-    }
-  }
-  var batsman_class = 'non-striker-name';
-  scoreService.insertBatsman($scope.newStriker, batsman_name, batsman_class);
-  var matchId = $scope.matchDetails[0].matchId;
-}
-
-$scope.startInnings = function(){
-  $scope.selectBowler();
-  $scope.selectStriker();
-  for(var bowler_index in $scope.players[1]) {
-    if($scope.newBowler == $scope.players[1][bowler_index].playerId) {
-      bowler_name = $scope.players[1][bowler_index].playerName;
-    }
-  }
-  var bowler_class = 'current-bowler-name';
-  scoreService.insertBowler($scope.newBowler, bowler_name, bowler_class);
   var matchId = $scope.matchDetails[0].matchId;
   $location.path('/'+matchId+'/scorecard');
 }
@@ -268,13 +220,6 @@ $scope.insertScore = function(){
   if($scope.out) {
     scoreService.updateBatsmen($scope.whoIsOut);
   }
-  $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
-  $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
-  $scope.total_runs = scoreService.getTotalRuns();
-  $scope.wickets = scoreService.getWickets();
-  $scope.current_ball_number = scoreService.getCurrentBallNumber();
-  $scope.current_over = scoreService.getCurrentOver();
-  $scope.next_ball = scoreService.getNextBall();
   $('.possible-runs button').attr('class','btn btn-default btn-sm');
   $('.change-strike').attr('class','btn btn-info btn-sm change-strike');
   $('.new-batsman').attr('class','btn btn-success btn-sm new-batsman');
@@ -288,7 +233,13 @@ $scope.insertScore = function(){
   $scope.extra_type = '';
   $scope.extra_run = 0;
   $('.who-is-runout').css('display','none');
-
+  $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
+  $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
+  $scope.total_runs = scoreService.getTotalRuns();
+  $scope.wickets = scoreService.getWickets();
+  $scope.current_ball_number = scoreService.getCurrentBallNumber();
+  $scope.current_over = scoreService.getCurrentOver();
+  $scope.next_ball = scoreService.getNextBall();
 };
 
 $scope.bowlerChange = function(){

@@ -2,6 +2,9 @@ app.factory('matchService',function($http){
 
   var players = [];
 
+  var current_indi_batsmen = [];
+  var current_indi_bowlers = [];
+
   var match = [];
 
   var batting_team = [];
@@ -60,13 +63,14 @@ app.factory('matchService',function($http){
       totalPlayer: totalPlayers,
       totalOvers: totalOvers,
     });
+
     for(var i=1;i<=totalPlayers;i++) {
       batsman_id = this.getGUID();
       bowler_id = this.getGUID();
       batsman_data = {
         id:i,
         playerId:batsman_id,
-        playerName:'',
+        playerName:'Player#'+i,
         teamId:first_batting_teamId,
         teamName:first_batting,
         out: false,
@@ -87,7 +91,7 @@ app.factory('matchService',function($http){
       bowler_data = {
         id:i,
         playerId:bowler_id,
-        playerName:'',
+        playerName:'Player#'+i,
         teamId:first_bowling_teamId,
         teamName:first_bowling,
         out: false,
@@ -109,11 +113,81 @@ app.factory('matchService',function($http){
       bowling_team.push(bowler_data);
     }
     players.push(batting_team,bowling_team);
+    this.insertBatsman();
+    this.insertStriker();
+    this.insertBowler();
+  }
+
+  factory.insertBatsman = function(){
+    var new_batsman = {
+       class: 'current-batsman-name',
+       playerId: players[0][1].playerId,
+       name: players[0][1].playerName,
+       runs: players[0][0].battingRuns,
+       balls: players[0][0].battingBalls,
+       fours: players[0][0].battingFours,
+       sixes: players[0][0].battingSixes,
+       out: players[0][0].out,
+       strike_rate: players[0][0].battingStrikeRate,
+    };
+    current_indi_batsmen.unshift(new_batsman);
+  }
+
+  factory.insertStriker = function(){
+    var new_batsman = {
+       class: 'non-striker-name',
+       playerId: players[1][0].playerId,
+       name: players[1][0].playerName,
+       runs: players[0][1].battingRuns,
+       balls: players[0][1].battingBalls,
+       fours: players[0][1].battingFours,
+       sixes: players[0][1].battingSixes,
+       out: players[0][1].out,
+       strike_rate: players[0][1].battingStrikeRate,
+    };
+    current_indi_batsmen.unshift(new_batsman);
+  }
+
+  factory.insertBowler = function(){
+    var bowler_data = {
+       class: 'current-bowler-name',
+       playerId: players[1][0].playerId,
+       name: players[1][0].playerName,
+       runs: players[1][0].bowlingRuns,
+       balls: players[1][0].bowlingBalls,
+       overs: players[1][0].bowlingOvers,
+       wks: players[1][0].bowlingWkts,
+       wides: players[1][0].bowlingWides,
+       noballs : players[1][0].bowlingNoBalls,
+       economy_rate : players[1][0].bowlingEconomyRate,
+       strike_rate: players[1][0].bowlingStrikeRate,
+    };
+    current_indi_bowlers.unshift(bowler_data);
+  }
+
+  factory.getCurrentIndiBatsmen = function(){
+    return current_indi_batsmen;
+  }
+
+  factory.getCurrentIndiBowlers = function(){
+    return current_indi_bowlers;
+  }
+
+  factory.setCurrentIndiBatsmen = function(current_indi_batsmen){
+    this.current_indi_batsmen = current_indi_batsmen;
+  }
+
+  factory.setCurrentIndiBowlers = function(current_indi_bowlers){
+    this.current_indi_bowlers = current_indi_bowlers;
   }
 
   factory.getPlayers = function(){
     return players;
   };
+
+  factory.getTeams = function(){
+    return ['teamOne','teamTwo'];
+  }
 
   factory.deletePlayer = function(id){
 

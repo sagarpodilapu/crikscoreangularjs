@@ -1,6 +1,7 @@
 body{
     background:#f8f8f8;
     font-family: 'Droid Serif', serif;
+    font-size: 12px;
     /*
     font-family: 'Open Sans', sans-serif;
     font-family: 'Montserrat', sans-serif; //headings
@@ -138,10 +139,6 @@ input[type=text], .form-check.form-check-inline, label.custom-control.custom-rad
     font-family: 'Raleway', sans-serif;
 }
 
-.scorecard-details {
-    font-size: 11px;
-}
-
 label.custom-control.custom-radio {
     margin: 0px 5px 0px 5px;
     padding: 5px 10px 0px 20px;
@@ -179,4 +176,17 @@ label.custom-control.custom-radio {
     margin-bottom: 0px;
     color: #6f6f6f;
     font-family: 'Montserrat', sans-serif;
+}
+
+a.navbar-brand {
+    text-align: center;
+}
+
+.scorecard-details h5 {
+    margin-top: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: #6f6f6f;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 5px;
 }

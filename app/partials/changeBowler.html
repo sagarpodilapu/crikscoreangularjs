@@ -2,7 +2,7 @@
   <div class="new-player">
     <h5>Select New Bowler</h5>
     <div class="col-sm-10">
-      <div data-ng-if="current_indi_bowler_stats[0].playerId != player.playerId && current_indi_bowler_stats[1].playerId != player.playerId" class="form-check" data-ng-repeat = "player in players[1]">
+      <div data-ng-if="current_indi_bowler_stats[0].playerId != player.playerId" class="form-check" data-ng-repeat = "player in players[1]">
         <label class="form-check-label">
           <input data-ng-click="selectedPlayer(player.playerId)" class="form-check-input" type="radio" name="bowler" id="{{ player.playerName  }}" value="{{ player.playerName  }}">
           {{ player.playerName  }}
