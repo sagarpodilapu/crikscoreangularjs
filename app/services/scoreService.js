@@ -47,6 +47,33 @@ app.factory('scoreService',['matchService', function(matchService){
     this.updatePlayers(scoreDetails[0].bowler_id, current_indi_bowlers[0], 1);
   }
 
+  factory.updatePlayers = function(player_id,current_player_array,team_index){
+    for(var i in players[team_index]) {
+      if(players[team_index][i].playerId == player_id) {
+        if(team_index == 0) {
+          players[team_index][i].out = current_player_array.out;
+          players[team_index][i].battingRuns = current_player_array.runs;
+          players[team_index][i].battingBalls = current_player_array.balls;
+          players[team_index][i].battingFours = current_player_array.fours;
+          players[team_index][i].battingSixes = current_player_array.sixes;
+          players[team_index][i].battingStrikeRate = current_player_array.strike_rate;
+        }else {
+          players[team_index][i].bowlingBalls = current_player_array.balls;
+          players[team_index][i].bowlingOvers = current_player_array.overs;
+          players[team_index][i].bowlingRuns = current_player_array.runs;
+          players[team_index][i].bowlingWkts = current_player_array.wks;
+          players[team_index][i].bowlingWides = current_player_array.wides;
+          players[team_index][i].bowlingNoBalls = current_player_array.noballs;
+          players[team_index][i].bowlingEconomyRate = current_player_array.economy_rate;
+          players[team_index][i].bowlingStrikeRate = current_player_array.strike_rate;
+        }
+        break;
+      }
+    }
+    console.log(team_index);
+    console.log(players[team_index][i]);
+  }
+
   factory.getPlayers = function(){
     return matchService.getPlayers();
   }
@@ -102,10 +129,8 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-    // console.log(bowler_class);
     current_indi_bowlers.unshift(bowler_data);
     if(current_indi_bowlers.length > 2) {
-      // current_indi_bowlers.pop();
       this.updateBowlers(current_indi_bowlers[1].playerId);
     }
   }
@@ -116,33 +141,6 @@ app.factory('scoreService',['matchService', function(matchService){
         current_indi_bowlers.splice(i,1);
       }
     }
-  }
-
-  factory.updatePlayers = function(player_id,current_player_array,team_index){
-    for(var i in players[team_index]) {
-      if(players[team_index][i].playerId == player_id) {
-        if(team_index == 0) {
-          players[team_index][i].out = current_player_array.out;
-          players[team_index][i].battingRuns = current_player_array.runs;
-          players[team_index][i].battingBalls = current_player_array.balls;
-          players[team_index][i].battingFours = current_player_array.fours;
-          players[team_index][i].battingSixes = current_player_array.sixes;
-          players[team_index][i].battingStrikeRate = current_player_array.strike_rate;
-        }else {
-          players[team_index][i].bowlingBalls = current_player_array.balls;
-          players[team_index][i].bowlingOvers = current_player_array.overs;
-          players[team_index][i].bowlingRuns = current_player_array.runs;
-          players[team_index][i].bowlingWkts = current_player_array.wks;
-          players[team_index][i].bowlingWides = current_player_array.wides;
-          players[team_index][i].bowlingNoBalls = current_player_array.noballs;
-          players[team_index][i].bowlingEconomyRate = current_player_array.economy_rate;
-          players[team_index][i].bowlingStrikeRate = current_player_array.strike_rate;
-        }
-        break;
-      }
-    }
-    console.log(team_index);
-    console.log(players[team_index][i]);
   }
 
   factory.getCurrentIndiBatsmen = function(){

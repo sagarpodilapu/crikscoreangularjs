@@ -150,3 +150,33 @@ label.custom-control.custom-radio {
 .btn:active, .btn:focus{
   box-shadow : none;
 }
+
+.bowling-full-scorecard thead, .batting-full-scorecard thead {
+    background: #eee;
+    color: #5f5f5f;
+    /* font-weight: 900; */
+}
+
+.bowling-full-scorecard td, .batting-full-scorecard td {
+    padding: 5px 5px;
+}
+
+.bowling-full-scorecard, .batting-full-scorecard {
+  border-top: thin solid #000;
+  border-bottom: thin solid #000;
+  margin-bottom: 20px;
+}
+
+.player-out{
+  background: #d65656;
+  color: #f8f8f8;
+  font-weight: 100;
+}
+
+.full-scorecard h5 {
+    margin-top: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    color: #6f6f6f;
+    font-family: 'Montserrat', sans-serif;
+}

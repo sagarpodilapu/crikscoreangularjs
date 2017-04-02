@@ -1,5 +1,8 @@
-<div class="container">
-  <h2>Full Scorecard</h2>
+<div class="container full-scorecard">
+  <h5>
+    Batting: {{ players[0][0].teamName }}
+    <small><a href="#!/{{  matchDetails[0].matchId }}/scorecard" class='btn btn-default btn-sm'>Back to scoring</a></small>
+  </h5>
   <div class="batting-full-scorecard">
     <table class='table'>
       <thead>
@@ -9,17 +12,15 @@
           <th>B</th>
           <th>4</th>
           <th>6</th>
-          <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="batsman in players[0]">
+        <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[0]">
           <td>{{ batsman.playerName }}</td>
           <td>{{ batsman.battingRuns }}</td>
           <td>{{ batsman.battingBalls }}</td>
           <td>{{ batsman.battingFours }}</td>
           <td>{{ batsman.battingSixes }}</td>
-          <td>{{ batsman.out }}</td>
         </tr>
       </tbody>
     </table>
@@ -44,5 +45,4 @@
       </tbody>
     </table>
   </div>
-  <a href="#!/{{  matchDetails[0].matchId }}/scorecard" class='btn btn-default btn-sm'>Back to scoring</a>
 </div>

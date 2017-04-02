@@ -211,12 +211,8 @@ $scope.insertScore = function(){
   }
 
   if(current_ball_local % 6 == 0 && current_ball_local > 0) {
-    if($scope.current_indi_bowler_stats.length == 2) {
-      $scope.changeBowler();
-    }else{
-      $scope.changeStrike();
-      $location.path('/'+matchId+'/changeBowler');
-    }
+    $location.path('/'+matchId+'/changeBowler');
+    $scope.changeStrike();
   }
   if($scope.current_indi_bowler_stats.length == 2){
     var score_details = [
@@ -265,10 +261,10 @@ $scope.insertScore = function(){
       }
     ];
   }
-  scoreService.insertScore(score_details);
   scoreService.updateCurrentBatsmen($scope.current_indi_batsman_stats[0]);
   scoreService.updateCurrentBowler($scope.current_indi_bowler_stats[0]);
   scoreService.updateLastTenBalls($scope.lastEvents);
+  scoreService.insertScore(score_details);
   if($scope.out) {
     scoreService.updateBatsmen($scope.whoIsOut);
   }
@@ -307,12 +303,12 @@ $scope.bowlerChange = function(){
   $location.path('/'+matchId+'/scorecard');
 }
 
-$scope.changeBowler = function(){
-  $scope.current_indi_bowler_stats[1].class = 'current-bowler-name';
-  $scope.current_indi_bowler_stats[0].class = 'previous-bowler-name';
-  $scope.current_indi_bowler_stats = $scope.current_indi_bowler_stats.reverse();
-  $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
-}
+// $scope.changeBowler = function(){
+//   $scope.current_indi_bowler_stats[1].class = 'current-bowler-name';
+//   $scope.current_indi_bowler_stats[0].class = 'previous-bowler-name';
+//   $scope.current_indi_bowler_stats = $scope.current_indi_bowler_stats.reverse();
+//   $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
+// }
 
 $scope.changeStrike = function(){
   $scope.current_indi_batsman_stats[1].class = 'current-batsman-name';
