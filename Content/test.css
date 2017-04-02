@@ -136,3 +136,12 @@ a.navbar-brand {
 input[type=text], .form-check.form-check-inline, label.custom-control.custom-radio, .form-check.ng-scope {
     font-family: 'Raleway', sans-serif;
 }
+
+.scorecard-details {
+    font-size: 11px;
+}
+
+label.custom-control.custom-radio {
+    margin: 0px 5px 0px 5px;
+    padding: 5px 10px 0px 20px;
+}

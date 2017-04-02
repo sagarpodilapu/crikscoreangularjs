@@ -72,44 +72,36 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-    current_indi_batsmen.push(new_batsman);
+    console.log(current_indi_batsmen);
+    current_indi_batsmen.unshift(new_batsman);
   }
 
   factory.insertBowler = function(bowler_id, bowler_name, bowler_class){
-    var new_bowler = {
-       class: bowler_class,
-       playerId: bowler_id,
-       name: bowler_name,
-       balls: 0,
-       overs: 0,
-       runs: 0,
-       wks: 0,
-       wides: 0,
-       noballs: 0,
-       economy_rate: 0,
-       strike_rate: 0,
-    };
     players = this.getPlayers();
     for(var i in players[1]) {
       if(bowler_id == players[1][i].playerId) {
-        var new_batsman = {
+        console.log(players[1][i]);
+        var bowler_data = {
            class: bowler_class,
            playerId: bowler_id,
            name: bowler_name,
-           runs: players[1][i].battingRuns,
+           runs: players[1][i].bowlingRuns,
            balls: players[1][i].bowlingBalls,
            overs: players[1][i].bowlingOvers,
            wks: players[1][i].bowlingWkts,
            wides: players[1][i].bowlingWides,
            noballs : players[1][i].bowlingNoBalls,
            economy_rate : players[1][i].bowlingEconomyRate,
-           strike_rate: players[1][i].battingStrikeRate,
+           strike_rate: players[1][i].bowlingStrikeRate,
         };
         break;
       }
     }
-    current_indi_bowlers.push(new_bowler);
+    console.log(current_indi_bowlers);
+    current_indi_bowlers.unshift(bowler_data);
+    console.log(current_indi_bowlers);
     if(current_indi_bowlers.length > 2) {
+      console.log(current_indi_bowlers[1].name);
       this.updateBowlers(current_indi_bowlers[1].playerId);
     }
   }

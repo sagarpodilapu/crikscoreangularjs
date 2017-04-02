@@ -1,17 +1,17 @@
 <div class="container">
   <div class="new-player">
-    <h5>Select New Batsman</h5>
+    <h5>Select Striker</h5>
     <div class="col-sm-10">
       <div class="form-check" data-ng-repeat = "player in players[0]">
         <label class="form-check-label">
-          <input {{ if(player.out) 'disabled' }} data-ng-click="selectedBatsman(player.playerId)" class="form-check-input" type="radio" name="batsman" id="{{ player.playerName  }}" value="{{ player.playerName  }}">
+          <input data-ng-click="selectedBatsman(player.playerId)" class="form-check-input" type="radio" name="batsman" id="{{ player.playerName  }}" value="{{ player.playerName  }}">
           {{ player.playerName  }}
         </label>
       </div>
     </div>
   </div>
   <div class="new-player">
-    <h5>Select Striker</h5>
+    <h5>Select Non Striker</h5>
     <div class="col-sm-10">
       <div class="form-check" data-ng-repeat = "player in players[0]">
         <label class="form-check-label">
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="new-player">
-    <h5>Select New Bowler</h5>
+    <h5>Select Bowler</h5>
     <div class="col-sm-10">
       <div class="form-check" data-ng-repeat = "player in players[1]">
         <label class="form-check-label">

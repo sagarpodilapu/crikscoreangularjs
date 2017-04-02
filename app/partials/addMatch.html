@@ -2,35 +2,35 @@
   <div class="new-player">
     <h5>Add Teams</h5>
     <div class="form-group row">
-      <label for="example-text-input" class="col-5 col-form-label text-right">Team One Name:</label>
-      <div class="col-7">
-        <input class="form-control" data-ng-model = "newMatch.teamOneName" type="text" value="teamOne" id="{{ newMatch.teamOneName}}" placeholder="Enter Team Name">
+      <label for="{{ newMatch.teamOneName}}" class="col-4 col-form-label text-right">Team One:</label>
+      <div class="col-8">
+        <input name="teamOne" class="form-control" data-ng-model = "newMatch.teamOneName" type="text" value="teamOne" id="{{ newMatch.teamOneName}}" placeholder="Enter Team Name">
       </div>
     </div>
     <div class="form-group row">
-      <label for="example-text-input" class="col-5 col-form-label text-right">Team Two Name:</label>
-      <div class="col-7">
-        <input class="form-control" data-ng-model = "newMatch.teamTwoName" type="text" value="teamTwo" id="{{ newMatch.teamTwoName}}" placeholder="Enter Team Name">
+      <label for="{{ newMatch.teamTwoName }}" class="col-4 col-form-label text-right">Team Two:</label>
+      <div class="col-8">
+        <input name="teamTwo" class="form-control" data-ng-model = "newMatch.teamTwoName" type="text" value="teamTwo" id="{{ newMatch.teamTwoName }}" placeholder="Enter Team Name">
       </div>
     </div>
     <div class="form-group row">
-      <label for="example-text-input" class="col-5 col-form-label text-right">Players per Team:</label>
-      <div class="col-7">
-        <select class="form-control form-control-sm" data-ng-model="newMatch.totalPlayers">
+      <label for="totalPlayers" class="col-4 col-form-label text-right">Players:</label>
+      <div class="col-8">
+        <select class="form-control form-control-sm" data-ng-model="newMatch.totalPlayers" id='totalPlayers'>
           <option data-ng-repeat = "pp in possible_players" value="{{ pp }}">{{ pp }}</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="example-text-input" class="col-5 col-form-label text-right">How many Overs:</label>
-      <div class="col-7">
-        <select class="form-control form-control-sm" data-ng-model="newMatch.totalOvers">
+      <label for="totalOvers" class="col-4 col-form-label text-right">Overs:</label>
+      <div class="col-8">
+        <select class="form-control form-control-sm" data-ng-model="newMatch.totalOvers" id="totalOvers">
           <option data-ng-repeat = "po in possible_overs" value="{{ po }}">{{ po }}</option>
         </select>
       </div>
     </div>
     <div class='form-group row'>
-      <label for="example-text-input" class="col-5 col-form-label text-right">Who won the toss?:</label>
+      <label for="toss" class="col-4 col-form-label text-right">Toss?:</label>
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class='form-group row'>
-      <label for="example-text-input" class="col-5 col-form-label text-right">Who is batting?:</label>
+      <label for="example-text-input" class="col-4 col-form-label text-right">Batting?:</label>
       <div class="teams-radio">
         <div class="form-check form-check-inline">
           <label class="form-check-label">
@@ -65,7 +65,7 @@
     </div>
     </div>
     <div class="form-group row right-most-btn">
-      <button class='btn btn-primary' data-ng-click="insertMatch()">Continue</button>
+      <button class='btn btn-primary' data-ng-click="insertMatch()">Add Match Information</button>
     </div>
   </div>
 </div>

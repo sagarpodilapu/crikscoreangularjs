@@ -5,8 +5,8 @@
           {{ matchDetails[0].firstBatting | uppercase }} team Players:
       </div>
       <div class="form-group row" data-ng-repeat="batsman in players[0]">
-        <label for="example-text-input" class="col-5 col-form-label text-right">Player #{{ batsman.id }} Name:</label>
-        <div class="col-7">
+        <label for="{{ batsman.playerId }}" class="col-4 col-form-label text-right">Player #{{ batsman.id }}</label>
+        <div class="col-8">
           <input class="form-control" data-ng-model = "batsman.playerName" type="text" value="" id="{{ batsman.playerId }}" placeholder="Enter Player Full Name">
         </div>
       </div>
@@ -16,14 +16,14 @@
           {{ matchDetails[0].firstBowling | uppercase }} team Players:
       </div>
       <div class="form-group row" data-ng-repeat="bowler in players[1]">
-        <label for="example-text-input" class="col-5 col-form-label text-right">Player #{{ bowler.id }} Name:</label>
-        <div class="col-7">
+        <label for="{{ bowler.playerId }}" class="col-4 col-form-label text-right">Player #{{ bowler.id }}</label>
+        <div class="col-8">
           <input class="form-control" data-ng-model = "bowler.playerName" type="text" value="" id="{{ bowler.playerId }}" placeholder="Enter Player Full Name">
         </div>
       </div>
     </div>
   </div>
   <div class="form-group row right-most-btn">
-    <button class='btn btn-primary' data-ng-click="startMatch()">Start Match</button>
+    <button class='btn btn-primary' data-ng-click="startMatch()">Add Players</button>
   </div>
 </div>

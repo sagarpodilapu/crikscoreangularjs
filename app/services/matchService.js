@@ -1,4 +1,5 @@
 app.factory('matchService',function($http){
+
   var players = [];
 
   var match = [];
@@ -7,6 +8,21 @@ app.factory('matchService',function($http){
   var bowling_team = [];
 
   var factory = {};
+
+  factory.fetchPlayers = function() {
+        var defer = $q.defer();
+
+        $http.get('Json/players.json')
+            .success(function(data) {
+                angular.extend(factory, data);
+                defer.resolve();
+            })
+            .error(function() {
+                defer.reject('could not find player.json');
+            });
+
+        return defer.promise;
+    }
 
   factory.insertMatch = function(teamOne, teamTwo, toss, batting, totalPlayers, totalOvers){
     var match_id = this.getGUID();
