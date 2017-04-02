@@ -213,19 +213,15 @@ $scope.insertScore = function(){
       }
     ];
   }
-  scoreService.updateCurrentBatsmen($scope.current_indi_batsman_stats[0]);
-  scoreService.updateCurrentBowler($scope.current_indi_bowler_stats[0]);
-  scoreService.updateLastTenBalls($scope.lastEvents);
-  scoreService.insertScore(score_details);
-  if($scope.out) {
-    scoreService.updateBatsmen($scope.whoIsOut);
-  }
+  scoreService.insertScore(score_details, $scope.current_indi_batsman_stats[0], $scope.current_indi_bowler_stats[0], $scope.lastEvents, $scope.whoIsOut);
   $('.possible-runs button').attr('class','btn btn-default btn-sm');
   $('.change-strike').attr('class','btn btn-info btn-sm change-strike');
   $('.new-batsman').attr('class','btn btn-success btn-sm new-batsman');
   $('.new-bowler').attr('class','btn btn-warning btn-sm new-bowler');
   $('.submit-score').prop('disabled',true);
   $('input').prop('checked',false).prop('disabled',true);
+  $scope.players = scoreService.getPlayers();
+  console.log($scope.players);
   if($scope.out == true) {
     $scope.out = false;
     $location.path('/'+matchId+'/changeBatsman');
@@ -234,6 +230,7 @@ $scope.insertScore = function(){
   $scope.extra_run = 0;
   $('.who-is-runout').css('display','none');
   $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
+  console.log($scope.current_indi_batsman_stats);
   $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
   $scope.total_runs = scoreService.getTotalRuns();
   $scope.wickets = scoreService.getWickets();
@@ -251,15 +248,9 @@ $scope.bowlerChange = function(){
   var bowler_class = 'current-bowler-name';
   scoreService.insertBowler($scope.currentPlayer, bowler_name, bowler_class);
   var matchId = $scope.matchDetails[0].matchId;
+  // $scope.current_indi_bowler_stats = $scope.current_indi_bowler_stats.reverse();
   $location.path('/'+matchId+'/scorecard');
 }
-
-// $scope.changeBowler = function(){
-//   $scope.current_indi_bowler_stats[1].class = 'current-bowler-name';
-//   $scope.current_indi_bowler_stats[0].class = 'previous-bowler-name';
-//   $scope.current_indi_bowler_stats = $scope.current_indi_bowler_stats.reverse();
-//   $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
-// }
 
 $scope.changeStrike = function(){
   $scope.current_indi_batsman_stats[1].class = 'current-batsman-name';

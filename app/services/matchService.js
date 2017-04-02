@@ -121,8 +121,8 @@ app.factory('matchService',function($http){
   factory.insertBatsman = function(){
     var new_batsman = {
        class: 'current-batsman-name',
-       playerId: players[0][1].playerId,
-       name: players[0][1].playerName,
+       playerId: players[0][0].playerId,
+       name: players[0][0].playerName,
        runs: players[0][0].battingRuns,
        balls: players[0][0].battingBalls,
        fours: players[0][0].battingFours,
@@ -136,8 +136,8 @@ app.factory('matchService',function($http){
   factory.insertStriker = function(){
     var new_batsman = {
        class: 'non-striker-name',
-       playerId: players[1][0].playerId,
-       name: players[1][0].playerName,
+       playerId: players[0][1].playerId,
+       name: players[0][1].playerName,
        runs: players[0][1].battingRuns,
        balls: players[0][1].battingBalls,
        fours: players[0][1].battingFours,
