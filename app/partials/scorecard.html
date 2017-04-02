@@ -8,9 +8,9 @@
           <th>Last 6 balls</th>
         </tr>
         <tr class="current-batsman-name">
-          <td>{{ total_runs}}/{{ wickets }}</td>
-          <td>{{ current_over }}</td>
-          <td>
+          <td class='text-center'>{{ total_runs}}/{{ wickets }}</td>
+          <td class='text-center'>{{ current_over }}</td>
+          <td class='text-center'>
             <span class='past-balls'>
               <span class='last-ten-balls' data-ng-repeat = "ball in lastSixBalls track by $index">{{ ball }}</span>
             </span>
@@ -19,7 +19,7 @@
       </table>
     </div>
     <div class="common-sc current-action">
-      <div class="current-action-inner">
+      <div class="current-action-inner possible-runs">
         <span class='add-run-text'>{{ next_ball }} Runs:</span>
         <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="0">0</button>
         <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="1">1</button>
@@ -74,7 +74,7 @@
         </label>
       </div>
       <div class="current-action-inner run-action">
-        <button type="button" name="button" data-ng-click="insertScore()" class='btn btn-success btn-sm'>Submit Score</button>
+        <button type="button" name="button" data-ng-click="insertScore()" class='btn btn-success btn-sm submit-score' disabled>Submit Score</button>
         <div class="who-is-runout">
           <label class="custom-control custom-radio">
             <input id="{{ current_indi_batsman_stats[0].playerId }}" name="whichBatsman" type="radio" class="custom-control-input" data-ng-click = "whichBatsman(current_indi_batsman_stats[0].playerId)" value="{{ current_indi_batsman_stats[0].playerId }}" disabled>
@@ -89,29 +89,29 @@
         </div>
       </div>
       <div class="change-anything">
-        <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm'>Change Strike</a>
-        <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm'>New Batsman</a>
-        <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm'>New Bowler</a>
+        <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm change-strike'>Change Strike</a>
+        <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>New Batsman</a>
+        <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm new-bowler'>New Bowler</a>
       </div>
     </div>
     <div class="common-sc current-batsmen">
       <div class="current-batsman">
         <table class='table'>
           <tr>
-            <th>Batsman</th>
+            <th>Batsmen</th>
             <th>R</th>
             <th>B</th>
-            <th>4s</th>
-            <th>6s</th>
+            <th>4</th>
+            <th>6</th>
           </tr>
           <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info {{ batsman.class }}">
-            <td id="{{ batsman.class }}">{{ batsman.name }}</td>
-            <td>{{ batsman.runs }}</td>
-            <td>{{ batsman.balls }}</td>
-            <td>{{ batsman.fours }}</td>
-            <td>{{ batsman.sixes }}</td>
-            <!-- <td>{{ batsman.strike_rate }}</td> -->
-            <!-- <td>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
+            <td class='text-center' id="{{ batsman.class }}">{{ batsman.name }}</td>
+            <td class='text-center'>{{ batsman.runs }}</td>
+            <td class='text-center'>{{ batsman.balls }}</td>
+            <td class='text-center'>{{ batsman.fours }}</td>
+            <td class='text-center'>{{ batsman.sixes }}</td>
+            <!-- <td class='text-center'>{{ batsman.strike_rate }}</td> -->
+            <!-- <td class='text-center'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
           </tr>
         </table>
       </div>
@@ -120,21 +120,21 @@
       <div class="current-bowler">
         <table class='table'>
           <tr>
-            <th>Bowler</th>
+            <th>Bowlers</th>
             <th>O</th>
             <th>R</th>
-            <th>wks</th>
+            <th>W</th>
             <th>E</th>
           </tr>
           <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info {{ bowler.class }}">
-            <td id="{{ bowler.class }}">{{ bowler.name }}</td>
-            <td>{{ bowler.overs }}</td>
-            <td>{{ bowler.runs }}</td>
-            <td>{{ bowler.wks }}</td>
-            <td>{{ bowler.economy_rate }}</td>
-            <!-- <td>{{ bowler.strike_rate }}</td> -->
-            <!-- <td>{{ batsman.sixes }}</td> -->
-            <!-- <td>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
+            <td class='text-center' id="{{ bowler.class }}">{{ bowler.name }}</td>
+            <td class='text-center'>{{ bowler.overs }}</td>
+            <td class='text-center'>{{ bowler.runs }}</td>
+            <td class='text-center'>{{ bowler.wks }}</td>
+            <td class='text-center'>{{ bowler.economy_rate }}</td>
+            <!-- <td class='text-center'>{{ bowler.strike_rate }}</td> -->
+            <!-- <td class='text-center'>{{ batsman.sixes }}</td> -->
+            <!-- <td class='text-center'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
           </tr>
         </table>
       </div>

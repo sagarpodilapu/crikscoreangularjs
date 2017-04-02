@@ -17,10 +17,10 @@ body{
 }
 .common-sc{
   margin: 5px;
-    padding: 1em;
-    background: #fff;
-    border: thin solid #000;
-    border-radius: 5px;
+  padding: 5px;
+  background: #fff;
+  border: thin solid #000;
+  border-radius: 5px;
 }
 .past-balls span{
   display: inline-block;
@@ -43,7 +43,7 @@ span.add-run-text {
     padding: 0px 5px;
 }
 .score-info td{
-  padding: 10px 0px 0px 15px;
+  padding: 5px 0px 0px 5px;
 }
 
 .table{
@@ -77,6 +77,7 @@ h5.main-heading-view {
   color: #6f6f6f;
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
+  padding: 5px;
 }
 
 .who-is-runout {
@@ -144,4 +145,8 @@ input[type=text], .form-check.form-check-inline, label.custom-control.custom-rad
 label.custom-control.custom-radio {
     margin: 0px 5px 0px 5px;
     padding: 5px 10px 0px 20px;
+}
+
+.btn:active, .btn:focus{
+  box-shadow : none;
 }

@@ -271,11 +271,16 @@ $scope.insertScore = function(){
   $scope.current_ball_number = scoreService.getCurrentBallNumber();
   $scope.current_over = scoreService.getCurrentOver();
   $scope.next_ball = scoreService.getNextBall();
+  $('.possible-runs button').attr('class','btn btn-default btn-sm');
+  $('.change-strike').attr('class','btn btn-info btn-sm');
+  $('.new-batsman').attr('class','btn btn-success btn-sm');
+  $('.new-bowler').attr('class','btn btn-warning btn-sm');
+  $('.submit-score').prop('disabled',true);
   $('input').prop('checked',false).prop('disabled',true);
   $scope.extra_type = '';
   $scope.out = false;
   $scope.extra_run = 0;
-  $('.who-is-runout').css('display','inline-block');
+  $('.who-is-runout').css('display','none');
 
 };
 
@@ -307,9 +312,16 @@ $scope.changeStrike = function(){
 }
 
 $scope.currentRun = function(element){
+  $('.possible-runs button').attr('class','btn btn-default btn-sm');
+  var change_strike_link = $('.change-strike').attr('class');
+  $('.change-strike').attr('class',change_strike_link+' disabled');
+  var new_batsman_link = $('.new-batsman').attr('class');
+  $('.new-batsman').attr('class',new_batsman_link+' disabled');
+  var new_bolwer_link = $('.new-bowler').attr('class');
+  $('.new-bowler').attr('class',new_bolwer_link+' disabled');
+  $('.submit-score').prop('disabled',false);
   var current_run = event.target.value;
   $scope.current_run = parseInt(current_run);
-  console.log(current_run);
   if(current_run == 0) {
     event.target.className='btn-danger';
   }else if (current_run == 4) {
