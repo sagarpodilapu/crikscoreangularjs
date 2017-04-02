@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Full Scorecard</h2>
+  <div class="batting-full-scorecard">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Batsman</th>
+          <th>R</th>
+          <th>B</th>
+          <th>4</th>
+          <th>6</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="batsman in players[0]">
+          <td>{{ batsman.playerName }}</td>
+          <td>{{ batsman.battingRuns }}</td>
+          <td>{{ batsman.battingBalls }}</td>
+          <td>{{ batsman.battingFours }}</td>
+          <td>{{ batsman.battingSixes }}</td>
+          <td>{{ batsman.out }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bowling-full-scorecard">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Bowler</th>
+          <th>O</th>
+          <th>R</th>
+          <th>W</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="bowler in players[1]" data-ng-if="bowler.bowlingOvers != 0">
+          <td>{{ bowler.playerName }}</td>
+          <td>{{ bowler.bowlingOvers }}</td>
+          <td>{{ bowler.bowlingRuns }}</td>
+          <td>{{ bowler.bowlingWkts }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="#!/{{  matchDetails[0].matchId }}/scorecard" class='btn btn-default btn-sm'>Back to scoring</a>
+</div>
