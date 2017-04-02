@@ -144,6 +144,7 @@ $scope.startInnings = function(){
 }
 
 $scope.insertScore = function(){
+  var matchId = $scope.matchDetails[0].matchId;
   var current_event = '';
   current_event = $scope.current_run;
   $scope.current_indi_batsman_stats[0].runs += $scope.current_run;
@@ -212,9 +213,8 @@ $scope.insertScore = function(){
   if(current_ball_local % 6 == 0 && current_ball_local > 0) {
     if($scope.current_indi_bowler_stats.length == 2) {
       $scope.changeBowler();
-      $scope.changeStrike();
     }else{
-      var matchId = $scope.matchDetails[0].matchId;
+      $scope.changeStrike();
       $location.path('/'+matchId+'/changeBowler');
     }
   }
@@ -226,11 +226,15 @@ $scope.insertScore = function(){
         total_runs : $scope.total_runs,
         last_ten_bals: $scope.lastEvents,
         batsman : $scope.current_indi_batsman_stats[0].name,
+        batsman_id: $scope.current_indi_batsman_stats[0].playerId,
         batsman_runs: $scope.current_indi_batsman_stats[0].runs,
         non_striker : $scope.current_indi_batsman_stats[1].name,
+        non_striker_id: $scope.current_indi_batsman_stats[1].playerId,
         non_striker_runs : $scope.current_indi_batsman_stats[1].runs,
         bowler : $scope.current_indi_bowler_stats[0].name,
+        bowler_id: $scope.current_indi_bowler_stats[0].playerId,
         previous_bowler : $scope.current_indi_bowler_stats[1].name,
+        previous_bowler_id: $scope.current_indi_bowler_stats[1].playerId,
         extra: $scope.extra_type,
         out:$scope.out,
         wickets:$scope.wickets,
@@ -245,11 +249,15 @@ $scope.insertScore = function(){
         total_runs : $scope.total_runs,
         last_ten_bals: $scope.lastEvents,
         batsman : $scope.current_indi_batsman_stats[0].name,
+        batsman_id: $scope.current_indi_batsman_stats[0].playerId,
         batsman_runs: $scope.current_indi_batsman_stats[0].runs,
         non_striker : $scope.current_indi_batsman_stats[1].name,
+        non_striker_id: $scope.current_indi_batsman_stats[1].playerId,
         non_striker_runs : $scope.current_indi_batsman_stats[1].runs,
         bowler : $scope.current_indi_bowler_stats[0].name,
+        bowler_id: $scope.current_indi_bowler_stats[0].playerId,
         previous_bowler : '-',
+        previous_bowler_id: '-',
         extra: $scope.extra_type,
         out:$scope.out,
         wickets:$scope.wickets,
@@ -262,7 +270,7 @@ $scope.insertScore = function(){
   scoreService.updateCurrentBowler($scope.current_indi_bowler_stats[0]);
   scoreService.updateLastTenBalls($scope.lastEvents);
   if($scope.out) {
-    scoreService.updatePlayers($scope.whoIsOut);
+    scoreService.updateBatsmen($scope.whoIsOut);
   }
   $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
   $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
@@ -272,13 +280,16 @@ $scope.insertScore = function(){
   $scope.current_over = scoreService.getCurrentOver();
   $scope.next_ball = scoreService.getNextBall();
   $('.possible-runs button').attr('class','btn btn-default btn-sm');
-  $('.change-strike').attr('class','btn btn-info btn-sm');
-  $('.new-batsman').attr('class','btn btn-success btn-sm');
-  $('.new-bowler').attr('class','btn btn-warning btn-sm');
+  $('.change-strike').attr('class','btn btn-info btn-sm change-strike');
+  $('.new-batsman').attr('class','btn btn-success btn-sm new-batsman');
+  $('.new-bowler').attr('class','btn btn-warning btn-sm new-bowler');
   $('.submit-score').prop('disabled',true);
   $('input').prop('checked',false).prop('disabled',true);
+  if($scope.out == true) {
+    $scope.out = false;
+    $location.path('/'+matchId+'/changeBatsman');
+  }
   $scope.extra_type = '';
-  $scope.out = false;
   $scope.extra_run = 0;
   $('.who-is-runout').css('display','none');
 
@@ -293,8 +304,6 @@ $scope.bowlerChange = function(){
   var bowler_class = 'current-bowler-name';
   scoreService.insertBowler($scope.currentPlayer, bowler_name, bowler_class);
   var matchId = $scope.matchDetails[0].matchId;
-  //$scope.changeBowler();
-  // $scope.changeStrike();
   $location.path('/'+matchId+'/scorecard');
 }
 

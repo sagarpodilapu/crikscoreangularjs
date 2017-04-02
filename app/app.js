@@ -37,6 +37,10 @@ app.config(function ($routeProvider){
     controller:'scorecardController',
     templateUrl:'/app/partials/changeBatsman.html'
   })
+  .when('/:matchId/fullScorecard',{
+    controller:'scorecardController',
+    templateUrl:'/app/partials/fullScorecard.html'
+  })
   .otherwise({ redirectTo: '/addMatch'});
 });
 app.config(['AnalyticsProvider', function (AnalyticsProvider) {

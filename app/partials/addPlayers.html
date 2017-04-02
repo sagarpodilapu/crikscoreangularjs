@@ -7,7 +7,7 @@
       <div class="form-group row" data-ng-repeat="batsman in players[0]">
         <label for="{{ batsman.playerId }}" class="col-4 col-form-label text-right">Player #{{ batsman.id }}</label>
         <div class="col-8">
-          <input class="form-control" data-ng-model = "batsman.playerName" type="text" value="" id="{{ batsman.playerId }}" placeholder="Enter Player Full Name">
+          <input class="form-control form-control-sm" data-ng-model = "batsman.playerName" type="text" value="" id="{{ batsman.playerId }}" placeholder="Enter Player Full Name">
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="form-group row" data-ng-repeat="bowler in players[1]">
         <label for="{{ bowler.playerId }}" class="col-4 col-form-label text-right">Player #{{ bowler.id }}</label>
         <div class="col-8">
-          <input class="form-control" data-ng-model = "bowler.playerName" type="text" value="" id="{{ bowler.playerId }}" placeholder="Enter Player Full Name">
+          <input class="form-control form-control-sm" data-ng-model = "bowler.playerName" type="text" value="" id="{{ bowler.playerId }}" placeholder="Enter Player Full Name">
         </div>
       </div>
     </div>

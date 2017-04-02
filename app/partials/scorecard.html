@@ -8,9 +8,9 @@
           <th>Last 6 balls</th>
         </tr>
         <tr class="current-batsman-name">
-          <td class='text-center'>{{ total_runs}}/{{ wickets }}</td>
-          <td class='text-center'>{{ current_over }}</td>
-          <td class='text-center'>
+          <td class='text-left'>{{ total_runs}}/{{ wickets }}</td>
+          <td class='text-left'>{{ current_over }}</td>
+          <td class='text-left'>
             <span class='past-balls'>
               <span class='last-ten-balls' data-ng-repeat = "ball in lastSixBalls track by $index">{{ ball }}</span>
             </span>
@@ -89,9 +89,11 @@
         </div>
       </div>
       <div class="change-anything">
-        <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm change-strike'>Change Strike</a>
-        <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>New Batsman</a>
-        <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm new-bowler'>New Bowler</a>
+        Change
+        <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm change-strike'>Strike</a>
+        <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>Batsman</a>
+        <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm new-bowler'>Bowler</a>
+        <a href="#!/{{  matchDetails[0].matchId }}/fullScorecard" class='btn btn-default btn-sm'>Scorecard</a>
       </div>
     </div>
     <div class="common-sc current-batsmen">
@@ -105,13 +107,13 @@
             <th>6</th>
           </tr>
           <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info {{ batsman.class }}">
-            <td class='text-center' id="{{ batsman.class }}">{{ batsman.name }}</td>
-            <td class='text-center'>{{ batsman.runs }}</td>
-            <td class='text-center'>{{ batsman.balls }}</td>
-            <td class='text-center'>{{ batsman.fours }}</td>
-            <td class='text-center'>{{ batsman.sixes }}</td>
-            <!-- <td class='text-center'>{{ batsman.strike_rate }}</td> -->
-            <!-- <td class='text-center'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
+            <td class='text-left' id="{{ batsman.class }}">{{ batsman.name }}</td>
+            <td class='text-left'>{{ batsman.runs }}</td>
+            <td class='text-left'>{{ batsman.balls }}</td>
+            <td class='text-left'>{{ batsman.fours }}</td>
+            <td class='text-left'>{{ batsman.sixes }}</td>
+            <!-- <td class='text-left'>{{ batsman.strike_rate }}</td> -->
+            <!-- <td class='text-left'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
           </tr>
         </table>
       </div>
@@ -127,14 +129,14 @@
             <th>E</th>
           </tr>
           <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info {{ bowler.class }}">
-            <td class='text-center' id="{{ bowler.class }}">{{ bowler.name }}</td>
-            <td class='text-center'>{{ bowler.overs }}</td>
-            <td class='text-center'>{{ bowler.runs }}</td>
-            <td class='text-center'>{{ bowler.wks }}</td>
-            <td class='text-center'>{{ bowler.economy_rate }}</td>
-            <!-- <td class='text-center'>{{ bowler.strike_rate }}</td> -->
-            <!-- <td class='text-center'>{{ batsman.sixes }}</td> -->
-            <!-- <td class='text-center'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
+            <td class='text-left' id="{{ bowler.class }}">{{ bowler.name }}</td>
+            <td class='text-left'>{{ bowler.overs }}</td>
+            <td class='text-left'>{{ bowler.runs }}</td>
+            <td class='text-left'>{{ bowler.wks }}</td>
+            <td class='text-left'>{{ bowler.economy_rate }}</td>
+            <!-- <td class='text-left'>{{ bowler.strike_rate }}</td> -->
+            <!-- <td class='text-left'>{{ batsman.sixes }}</td> -->
+            <!-- <td class='text-left'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
           </tr>
         </table>
       </div>
