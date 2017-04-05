@@ -3,9 +3,9 @@ app.factory('scoreService',['matchService', function(matchService){
   var last_ten_balls = [];
   var next_ball = 0;
   var total_runs = 0;
-  var wickets = 0;
   var current_over = 0;
   var current_ball_number = 0;
+  var wickets = 0;
 
   var factory = {};
 
@@ -17,7 +17,6 @@ app.factory('scoreService',['matchService', function(matchService){
     current_ball_number = scoreDetails[0].current_ball_number;
     current_over = Math.floor(current_ball_number/6) + "." + current_ball_number%6;
     next_ball = Math.floor(next_ball/6) + "." + next_ball%6;
-    console.log(scoreDetails[0]);
     this.updatePlayersBatsmen(currentBatsman);
     this.updatePlayersBowlers(currentBowler);
     this.last_ten_balls = currentBallDetails;
@@ -39,7 +38,6 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-    console.log(players[0][i]);
   }
 
   factory.updatePlayersBowlers = function(current_player_array){
@@ -57,12 +55,10 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-    console.log(players[1][i]);
   }
 
   factory.updateBatsmen = function(player_id) {
     var current_indi_batsmen = this.getCurrentIndiBatsmen();
-    console.log(current_indi_batsmen);
     for(var i in current_indi_batsmen) {
       if(current_indi_batsmen[i].playerId === player_id) {
         current_indi_batsmen.splice(i,1);
@@ -184,6 +180,7 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.getTotalRuns = function(){
+    console.log(total_runs);
     return total_runs;
   }
 
@@ -201,6 +198,16 @@ app.factory('scoreService',['matchService', function(matchService){
 
   factory.getLastTenBallEvents = function(){
     return last_ten_balls;
+  }
+
+  factory.endInnings = function(totalRuns, total_wickets, total_overs, total_balls) {
+    matchService.endInnings(totalRuns, total_wickets, total_overs, total_balls);
+    last_ten_balls = [];
+    next_ball = 0;
+    total_runs = 0;
+    current_over = 0;
+    current_ball_number = 0;
+    wickets = 0;
   }
 
   factory.setNextBall = function(next_ball) {
@@ -221,6 +228,9 @@ app.factory('scoreService',['matchService', function(matchService){
 
   factory.getCurrentIndiBowlers = function() {
     return matchService.getCurrentIndiBowlers();
+  }
+  factory.getCurrentInnings = function(){
+    return matchService.getCurrentInnings();
   }
   factory.setCurrentIndiBowlers = function(current_indi_bowlers) {
     matchService.setCurrentIndiBowlers(current_indi_bowlers);

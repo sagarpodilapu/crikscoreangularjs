@@ -13,7 +13,7 @@ app.config(function ($routeProvider){
     controller:'addMatchController',
     templateUrl:'/app/partials/addMatch.html'
   })
-  .when('/:matchId/scorecard',{
+  .when('/:matchId/:innings/scorecard',{
     controller:'scorecardController',
     templateUrl:'/app/partials/scorecard.html'
   })

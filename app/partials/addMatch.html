@@ -1,67 +1,18 @@
 <div class='container scorecard-details'>
   <div class="new-player">
     <h5>Add Teams</h5>
-    <!-- <div class="form-group row">
-      <label for="{{ newMatch.teamOneName}}" class="col-4 col-form-label text-right">Team One:</label>
-      <div class="col-8">
-        <input name="teamOne" class="form-control form-control-sm" data-ng-model = "newMatch.teamOneName" type="text" value="teamOne" id="{{ newMatch.teamOneName}}" placeholder="Enter Team Name">
+    <div class="form-group row">
+      <label for="totalPlayers" class="col-5 col-form-label text-right"><span class='new-match-total'> {{ newMatch.totalPlayers}} </span> Players per Team:</label>
+      <div class="col-7">
+        <input class="form-control form-control-sm" data-ng-model="newMatch.totalPlayers" id="totalPlayers" type="range" min="4" max="11" step="1" />
       </div>
     </div>
     <div class="form-group row">
-      <label for="{{ newMatch.teamTwoName }}" class="col-4 col-form-label text-right">Team Two:</label>
-      <div class="col-8">
-        <input name="teamTwo" class="form-control form-control-sm" data-ng-model = "newMatch.teamTwoName" type="text" value="teamTwo" id="{{ newMatch.teamTwoName }}" placeholder="Enter Team Name">
-      </div>
-    </div> -->
-    <div class="form-group row">
-      <label for="totalPlayers" class="col-4 col-form-label text-right">Players / Team:</label>
-      <div class="col-8">
-        <select class="form-control form-control-sm" data-ng-model="newMatch.totalPlayers" id='totalPlayers'>
-          <option data-ng-repeat = "pp in possible_players" value="{{ pp }}">{{ pp }}</option>
-        </select>
+      <label for="totalOvers" class="col-5 col-form-label text-right"><span class='new-match-total'>{{ newMatch.totalOvers}} </span> Overs:</label>
+      <div class="col-7">
+        <input class="form-control form-control-sm" data-ng-model="newMatch.totalOvers" id="totalOvers" type="range" min="4" max="25" step="1" />
       </div>
     </div>
-    <div class="form-group row">
-      <label for="totalOvers" class="col-4 col-form-label text-right">Overs:</label>
-      <div class="col-8">
-        <select class="form-control form-control-sm" data-ng-model="newMatch.totalOvers" id="totalOvers">
-          <option data-ng-repeat = "po in possible_overs" value="{{ po }}">{{ po }}</option>
-        </select>
-      </div>
-    </div>
-    <div class='form-group row'>
-      <label for="toss" class="col-4 col-form-label text-right">Toss?:</label>
-      <div class="teams-radio">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ teamNames[0] }}" value="{{ teamNames[0] }}" > {{ teamNames[0] }}
-          </label>
-        </div>
-      </div>
-      <div class="teams-radio">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="toss" data-ng-model = "newMatch.toss" id="toss{{ teamNames[1] }}" value="{{ teamNames[1] }}" > {{ teamNames[1] }}
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class='form-group row'>
-      <label for="example-text-input" class="col-4 col-form-label text-right">Batting?:</label>
-      <div class="teams-radio">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ teamNames[0] }}" value="{{ teamNames[0] }}" > {{ teamNames[0] }}
-          </label>
-        </div>
-      </div>
-      <div class="teams-radio">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="batting" data-ng-model = "newMatch.batting" id="batting{{ teamNames[1] }}" value="{{ teamNames[1] }}" > {{ teamNames[1] }}
-          </label>
-        </div>
-      </div>
     </div>
     </div>
     <div class="form-group row right-most-btn">
