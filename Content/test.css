@@ -364,7 +364,6 @@ span.current-overs.ng-binding {
 }
 
 h2.innings-break-text {
-    font-family: montessarat,;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 15px;
 }
@@ -382,5 +381,10 @@ h2.innings-break-text {
 .match-result {
     font-size: 24px;
     font-weight: 900;
-    /* text-align: center; */
+}
+
+.score-card-info.to-win.ng-binding.ng-scope {
+    font-size: 18px;
+    margin: 0px;
+    padding-bottom: 5px;
 }
