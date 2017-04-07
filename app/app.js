@@ -9,6 +9,10 @@
 var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics']);
 app.config(function ($routeProvider){
   $routeProvider
+  .when('/',{
+    controller:'addMatchController',
+    templateUrl:'/app/partials/home.html'
+  })
   .when('/addMatch',{
     controller:'addMatchController',
     templateUrl:'/app/partials/addMatch.html'
@@ -49,7 +53,7 @@ app.config(function ($routeProvider){
     controller:'scorecardController',
     templateUrl:'/app/partials/matchEnded.html'
   })
-  .otherwise({ redirectTo: '/addMatch'});
+  .otherwise({ redirectTo: '/'});
 });
 app.config(['AnalyticsProvider', function (AnalyticsProvider) {
    // Add configuration code as desired

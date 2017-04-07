@@ -388,3 +388,12 @@ h2.innings-break-text {
     margin: 0px;
     padding-bottom: 5px;
 }
+
+.new-player.intro {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+a.btn.btn-warning.btn-sm.end-innings-btn.ng-scope {
+    float: right;
+}

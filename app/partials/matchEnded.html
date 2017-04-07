@@ -1,5 +1,5 @@
 <div class="scorecard-details">
-  <h2 class='innings-break-text'>Match Ended</h2>
+  <h2 class='innings-break-'>Match Ended</h2>
   <div class='first-innings-score'>{{ matchDetails[0].teamOne}} -  {{ matchDetails[0].firstInningsRuns }} / {{ matchDetails[0].firstInningsWkts }}
     <span class='current-overs'> Overs - {{ matchDetails[0].firstInningsOvers }} </span>
   </div>
@@ -11,5 +11,7 @@
       {{ matchDetails[0].winner }}
     </span>
   </div>
-  <!-- <a href='#!/{{ matchDetails[0].matchId }}/second/scorecard' class='btn btn-success'>Start Second Innings</a> -->
+  <div class="">
+      <button data-ng-click="reload()" class='btn btn-success'>Play Another Match</button>
+  </div>
 </div>

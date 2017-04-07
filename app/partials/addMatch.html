@@ -1,6 +1,9 @@
 <div class='container scorecard-details'>
+  <div class="new-player intro">
+    Select the number of players and number of overs each team play.
+  </div>
   <div class="new-player">
-    <h5>Add Teams</h5>
+    <h5>Add Match Information</h5>
     <div class="form-group row">
       <label for="totalPlayers" class="col-5 col-form-label text-right"><span class='new-match-total'> {{ newMatch.totalPlayers}} </span> Players per Team:</label>
       <div class="col-7">
@@ -16,7 +19,7 @@
     </div>
     </div>
     <div class="form-group row right-most-btn">
-      <button class='btn btn-primary' data-ng-click="insertMatch()">Add Match Information</button>
+      <button class='btn btn-primary' data-ng-click="insertMatch()">Start Match</button>
     </div>
   </div>
 </div>

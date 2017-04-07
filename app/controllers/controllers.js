@@ -71,7 +71,15 @@ $scope.endInnings = function(){
   $location.path('/'+matchId+'/inningsBreak');
 }
 
+
+$scope.reload = function()
+{
+   location.reload();
+   $location.path('/addMatch');
+}
+
 $scope.endMatch = function(){
+  console.log('end match');
   scoreService.endMatch($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
   $location.path('/'+matchId+'/matchEnded');

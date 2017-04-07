@@ -7,6 +7,11 @@
   </div>
   <a data-ng-if="currentInnings == 'Second Innings'" data-ng-click="endMatch()" class='btn btn-warning btn-sm end-innings-btn'> End Match </a>
   <a data-ng-if="currentInnings == 'First Innings'" data-ng-click="endInnings()" class='btn btn-warning btn-sm end-innings-btn'> End Innings </a>
+  <div class="instructions">
+    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#instructionsModal">
+      Instructions
+    </button>
+  </div>
   <div class="score-card-info to-win" data-ng-if="currentInnings == 'Second Innings'">
     To win: {{ runsLeft }} in {{ ballsLeft }} balls
   </div>
@@ -149,6 +154,38 @@
           <!-- <td class='text-left'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
         </tr>
       </table>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="instructionsModalLabel">How to use</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ol class='instructions-list'>
+          <li>Click on runs button. They are numbered as 0, 1, 2, 4, 5 and 6.</li>
+          <li>If its a extra, click on wide or NoBall or Byes. You have to click on run to enable this.Click 0 for no runs.</li>
+          <li>If the batsman is out, click on out or run out or retired. You have to click on run to enable this. Click 0 for no runs.</li>
+          <li>If the batsman is run out or retired, it will ask for which batsman and select the correct batsman who is out</li>
+          <li>Click submit score to update the score. Please make sure you make no mistakes.</li>
+          <li>If you have to change strike, click on strike button.</li>
+          <li>If you want to change batsman, click on batsman button.</li>
+          <li>If you want to change bowler, click on bowler button.</li>
+          <li>You can see full scorecard by clicking on scorecard link.</li>
+          <li>The innings will be over after all balls are bowled or all wickets fell. You can also end innings by clicking the button at top.</li>
+          <li>The match will be over after all balls are bowled or all wickets fell or second team wins. You can also end match by clicking the button at top.</li>
+          <li>Batsman and Bowler will change as per runs scored or over bowled or wicket fell.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to Match</button>
+      </div>
     </div>
   </div>
 </div>
