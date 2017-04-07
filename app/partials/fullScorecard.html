@@ -81,7 +81,7 @@
         <tbody>
           <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[0]">
             <td data-ng-if='batsman.out == false'>{{ batsman.playerName }}</td>
-            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} OUT</td>
+            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} <span class='out-status'>OUT</span></td>
             <td>{{ batsman.battingRuns }}</td>
             <td>{{ batsman.battingBalls }}</td>
             <td>{{ batsman.battingFours }}</td>

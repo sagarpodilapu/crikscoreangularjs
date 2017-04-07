@@ -13,19 +13,6 @@ app.factory('matchService',function($http){
 
   var factory = {};
 
-  // $http({
-  // method: 'GET',
-  // url: 'Json/match.json'
-  // }).then(function successCallback(response) {
-  //   // this callback will be called asynchronously
-  //   // when the response is available
-  //   console.log(response.data);
-  //   this.setMatchDetails(response.data);
-  // }, function errorCallback(response) {
-  //   // called asynchronously if an error occurs
-  //   // or server returns response with an error status.
-  // });
-
   factory.fetchPlayers = function() {
         var defer = $q.defer();
 

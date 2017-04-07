@@ -1,7 +1,7 @@
 body{
     background:#f8f8f8;
     font-family: 'Droid Serif', serif;
-    font-size: 12px;
+    font-size: 11px;
     /*
     font-family: 'Open Sans', sans-serif;
     font-family: 'Montserrat', sans-serif; //headings
@@ -85,6 +85,10 @@ h5.main-heading-view {
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
   padding: 5px;
+}
+
+.scorecard-details.ng-scope {
+    margin-top: 20px;
 }
 
 .who-is-runout {
@@ -203,23 +207,13 @@ a.back-to-scoring {
   float:right;
 }
 
-.full-scorecard h5 {
-    margin-top: 15px;
-    padding-bottom: 5px;
-    margin-bottom: 0px;
-    color: #6f6f6f;
-    font-family: 'Montserrat', sans-serif;
-}
-
 a.navbar-brand {
     text-align: center;
 }
 
 .score-card-info {
-    margin-top: 15px;
-    /* padding-bottom: 5px; */
-    margin-bottom: 5px;
-    /* color: #6f6f6f; */
+    margin-top: 5px;
+    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     padding-left: 5px;
     display: inline-block;
@@ -333,4 +327,60 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
     background: #ccc;
+}
+
+.container.full-scorecard.ng-scope {
+    margin-top: 10px;
+}
+
+a.btn.btn-success.btn-sm.back-to-scoring.ng-scope {
+    float: right;
+}
+
+.current-innings.ng-binding {
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.one-score.ng-binding.ng-scope {
+    padding: 10px 0px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+span.current-overs.ng-binding {
+    float: right;
+}
+
+.full-scorecard tbody {
+    font-weight: 700;
+}
+
+.innings-break-score {
+    font-size: 16px;
+    border-bottom: thin solid #aaa;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+h2.innings-break-text {
+    font-family: montessarat,;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+.first-innings-score.ng-binding {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.second-innings-score.ng-binding {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.match-result {
+    font-size: 24px;
+    font-weight: 900;
+    /* text-align: center; */
 }

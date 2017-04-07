@@ -8,9 +8,8 @@ app.factory('scoreService',['matchService', function(matchService){
   var current_ball_number = 0;
   var wickets = 0;
 
-  factory.insertScore = function(scoreDetails, currentBatsman, currentBowler, currentBallDetails,whichBatsman){
+  factory.insertScore = function(scoreDetails, currentBatsman, currentBowler, currentBallDetails, whichBatsman){
     scoreDetails[0].whoIsOut = whichBatsman;
-    console.log('insert score');
     score.push(scoreDetails);
     next_ball = scoreDetails[0].current_ball_number+1;
     total_runs = scoreDetails[0].total_runs;
@@ -27,8 +26,6 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.updatePlayersBatsmen = function(current_player_array, who_is_out){
-    console.log('updated current batsman players');
-    console.log(current_player_array);
     var players = this.getPlayers();
     for(var i in players[0]) {
       if(players[0][i].playerId == who_is_out) {
@@ -46,7 +43,6 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.updatePlayersBowlers = function(current_player_array){
-    console.log('updating current bowler players');
     var players = this.getPlayers();
     for(var i in players[1]) {
       if(players[1][i].playerId == current_player_array.playerId) {
@@ -64,7 +60,6 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.updateBatsmen = function(player_id) {
-    console.log('removing out batsman from current players');
     var current_indi_batsmen = this.getCurrentIndiBatsmen();
     for(var i in current_indi_batsmen) {
       if(current_indi_batsmen[i].playerId === player_id) {
@@ -138,7 +133,6 @@ app.factory('scoreService',['matchService', function(matchService){
 
   factory.updateBowlers = function(player_id) {
     var current_indi_bowlers = this.getCurrentIndiBowlers();
-    // this.updatePlayers(scoreDetails[0].bowler_id, current_indi_bowlers[0], 1);
     for(var i in current_indi_bowlers) {
       if(current_indi_bowlers[i].playerId === player_id) {
         current_indi_bowlers.splice(i,1);
