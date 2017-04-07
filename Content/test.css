@@ -12,6 +12,12 @@ body{
     font-family: 'Josefin Sans', sans-serif; //buttons
     */
 }
+.not-out {
+  display:none;
+}
+.no-extra {
+  display:none;
+}
 .teams-radio {
     margin-left: 1em;
     margin-top: 0.2em;
@@ -165,9 +171,36 @@ label.custom-control.custom-radio {
 }
 
 .player-out{
-  background: #d65656;
-  color: #f8f8f8;
+  color: #aaa;
   font-weight: 100;
+}
+.current-innings {
+    margin: 10px 0px;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+a.back-to-scoring {
+    float: right;
+}
+
+.one-score {
+    font-weight: 700;
+    margin: 5px 0px;
+    border-top: thin solid #aaa;
+    padding: 5px 0px;
+}
+
+.current-overs {
+    float: right;
+}
+
+.batting-full-scorecard tbody {
+    font-weight: 900;
+}
+
+.out-status {
+  float:right;
 }
 
 .full-scorecard h5 {

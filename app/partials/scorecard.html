@@ -3,9 +3,9 @@
     <div class="score-card-info team-name">
       {{ currentInnings }}
     </div>
-    <div class="score-card-info" data-ng-if="currentInnings == 'First Innings'">
+    <!-- <div class="score-card-info" data-ng-if="currentInnings == 'First Innings'">
       {{ matchDetails[0].totalOvers }} overs
-    </div>
+    </div> -->
     <div class="score-card-info">
       Batting: <span class='team-name'>{{ players[0][0].teamName }}</span>
     </div>
@@ -24,7 +24,7 @@
         </tr>
         <tr class="current-batsman-name">
           <td class='text-left'>{{ total_runs}}/{{ wickets }}</td>
-          <td class='text-left'>{{ current_over }}</td>
+          <td class='text-left'>{{ current_over }} / {{ matchDetails[0].totalOvers }}</td>
           <td class='text-left'>
             <span class='past-balls'>
               <span class='last-ten-balls' data-ng-repeat = "ball in lastSixBalls track by $index">{{ ball }}</span>
@@ -55,7 +55,7 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">NoBall</span>
         </label>
-        <label class="custom-control custom-radio">
+        <label class="custom-control custom-radio no-extra">
           <input id="no-extra" name="extra" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="noextra" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">No Extra</span>
@@ -67,7 +67,7 @@
         </label>
       </div>
       <div class="current-action-inner current-batsman-name">
-        <label class="custom-control custom-radio">
+        <label class="custom-control custom-radio wicket">
           <input id="wicket" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addWicket" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Out</span>
@@ -77,7 +77,7 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Run Out</span>
         </label>
-        <label class="custom-control custom-radio">
+        <label class="custom-control custom-radio not-out">
           <input id="not-out" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addNotOut" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Not Out</span>

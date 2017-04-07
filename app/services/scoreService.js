@@ -1,4 +1,5 @@
 app.factory('scoreService',['matchService', function(matchService){
+  var factory = {};
   var score = [];
   var last_ten_balls = [];
   var next_ball = 0;
@@ -7,9 +8,9 @@ app.factory('scoreService',['matchService', function(matchService){
   var current_ball_number = 0;
   var wickets = 0;
 
-  var factory = {};
-
   factory.insertScore = function(scoreDetails, currentBatsman, currentBowler, currentBallDetails,whichBatsman){
+    scoreDetails[0].whoIsOut = whichBatsman;
+    console.log('insert score');
     score.push(scoreDetails);
     next_ball = scoreDetails[0].current_ball_number+1;
     total_runs = scoreDetails[0].total_runs;
@@ -17,19 +18,23 @@ app.factory('scoreService',['matchService', function(matchService){
     current_ball_number = scoreDetails[0].current_ball_number;
     current_over = Math.floor(current_ball_number/6) + "." + current_ball_number%6;
     next_ball = Math.floor(next_ball/6) + "." + next_ball%6;
-    this.updatePlayersBatsmen(currentBatsman);
-    this.updatePlayersBowlers(currentBowler);
-    this.last_ten_balls = currentBallDetails;
+    this.updatePlayersBatsmen(currentBatsman, whichBatsman);
     if(scoreDetails[0].out == true) {
       this.updateBatsmen(whichBatsman);
     }
+    this.updatePlayersBowlers(currentBowler);
+    this.last_ten_balls = currentBallDetails;
   }
 
-  factory.updatePlayersBatsmen = function(current_player_array){
+  factory.updatePlayersBatsmen = function(current_player_array, who_is_out){
+    console.log('updated current batsman players');
+    console.log(current_player_array);
     var players = this.getPlayers();
     for(var i in players[0]) {
+      if(players[0][i].playerId == who_is_out) {
+        players[0][i].out = current_player_array.out;
+      }
       if(players[0][i].playerId == current_player_array.playerId) {
-          players[0][i].out = current_player_array.out;
           players[0][i].battingRuns = current_player_array.runs;
           players[0][i].battingBalls = current_player_array.balls;
           players[0][i].battingFours = current_player_array.fours;
@@ -41,6 +46,7 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.updatePlayersBowlers = function(current_player_array){
+    console.log('updating current bowler players');
     var players = this.getPlayers();
     for(var i in players[1]) {
       if(players[1][i].playerId == current_player_array.playerId) {
@@ -58,12 +64,14 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.updateBatsmen = function(player_id) {
+    console.log('removing out batsman from current players');
     var current_indi_batsmen = this.getCurrentIndiBatsmen();
     for(var i in current_indi_batsmen) {
       if(current_indi_batsmen[i].playerId === player_id) {
         current_indi_batsmen.splice(i,1);
       }
     }
+
     this.setCurrentIndiBatsmen(current_indi_batsmen);
   }
 
@@ -139,38 +147,6 @@ app.factory('scoreService',['matchService', function(matchService){
     this.setCurrentIndiBowlers(current_indi_bowlers);
   }
 
-
-
-  // factory.updateCurrentBatsmen = function(current_batsman){
-  //   var current_indi_batsmen = this.getCurrentIndiBatsmen();
-  //   // this.updatePlayers(scoreDetails[0].batsman_id, current_indi_batsmen[0], 0);
-  //   console.log(current_batsman);
-  //   console.log(current_indi_batsmen);
-  //   for(var i in current_indi_batsmen) {
-  //     if(current_indi_batsmen[i].playerId == current_batsman.playerId) {
-  //       console.log(i);
-  //       for(var key in current_batsman) {
-  //         current_indi_batsmen[i].key = current_batsman.key;
-  //       }
-  //       break;
-  //     }
-  //   }
-  //   this.setCurrentIndiBatsmen(current_indi_batsmen);
-  // }
-
-  // factory.updateCurrentBowler = function(current_bowler){
-  //   var current_indi_bowlers = this.getCurrentIndiBowlers();
-  //   for(var i in current_indi_bowlers) {
-  //     if(current_indi_bowlers[i].playerId == current_bowler.playerId) {
-  //       for(var key in current_bowler) {
-  //         current_indi_bowlers[i].key = current_bowler.key;
-  //       }
-  //       break;
-  //     }
-  //   }
-  //   this.setCurrentIndiBowlers(current_indi_bowlers);
-  // }
-
   factory.getScore = function(){
     return score;
   }
@@ -180,7 +156,6 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.getTotalRuns = function(){
-    console.log(total_runs);
     return total_runs;
   }
 
@@ -202,6 +177,16 @@ app.factory('scoreService',['matchService', function(matchService){
 
   factory.endInnings = function(totalRuns, total_wickets, total_overs, total_balls) {
     matchService.endInnings(totalRuns, total_wickets, total_overs, total_balls);
+    last_ten_balls = [];
+    next_ball = 0;
+    total_runs = 0;
+    current_over = 0;
+    current_ball_number = 0;
+    wickets = 0;
+  }
+
+  factory.endMatch = function(totalRuns, total_wickets, total_overs, total_balls) {
+    matchService.endMatch(totalRuns, total_wickets, total_overs, total_balls);
     last_ten_balls = [];
     next_ball = 0;
     total_runs = 0;

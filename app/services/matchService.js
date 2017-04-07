@@ -13,6 +13,19 @@ app.factory('matchService',function($http){
 
   var factory = {};
 
+  // $http({
+  // method: 'GET',
+  // url: 'Json/match.json'
+  // }).then(function successCallback(response) {
+  //   // this callback will be called asynchronously
+  //   // when the response is available
+  //   console.log(response.data);
+  //   this.setMatchDetails(response.data);
+  // }, function errorCallback(response) {
+  //   // called asynchronously if an error occurs
+  //   // or server returns response with an error status.
+  // });
+
   factory.fetchPlayers = function() {
         var defer = $q.defer();
 
@@ -129,6 +142,21 @@ app.factory('matchService',function($http){
     this.insertBatsman();
     this.insertStriker();
     this.insertBowler();
+
+  }
+
+  factory.endMatch = function(total_runs, total_wickets, total_overs, total_balls) {
+    match[0].secondInningsRuns = total_runs;
+    match[0].secondInningsWkts = total_wickets;
+    match[0].secondInningsBalls = total_balls;
+    match[0].secondInningsOvers = total_overs;
+    if(match[0].firstInningsRuns > match[0].secondInningsRuns) {
+      match[0].winner = match[0].teamOne;
+    }else if(match[0].firstInningsRuns < match[0].secondInningsRuns) {
+      match[0].winner = match[0].teamTwo;
+    }else {
+      match[0].winner = 'match tied';
+    }
   }
 
   factory.insertBatsman = function(){
@@ -212,6 +240,10 @@ app.factory('matchService',function($http){
 
   factory.getMatchDetails = function(){
     return match;
+  }
+
+  factory.setMatchDetails = function(match_details){
+    this.match = match_details;
   }
 
   factory.getMatchId = function(){

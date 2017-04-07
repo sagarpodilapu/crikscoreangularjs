@@ -41,6 +41,14 @@ app.config(function ($routeProvider){
     controller:'scorecardController',
     templateUrl:'/app/partials/fullScorecard.html'
   })
+  .when('/:matchId/inningsBreak',{
+    controller:'scorecardController',
+    templateUrl:'/app/partials/inningsBreak.html'
+  })
+  .when('/:matchId/matchEnded',{
+    controller:'scorecardController',
+    templateUrl:'/app/partials/matchEnded.html'
+  })
   .otherwise({ redirectTo: '/addMatch'});
 });
 app.config(['AnalyticsProvider', function (AnalyticsProvider) {

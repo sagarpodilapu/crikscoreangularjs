@@ -1,48 +1,160 @@
 <div class="container full-scorecard">
-  <h5>
-    Batting: {{ players[0][0].teamName }}
-    <small><a href="#!/{{  matchDetails[0].matchId }}/first/scorecard" class='btn btn-default btn-sm'>Back to scoring</a></small>
-  </h5>
-  <div class="batting-full-scorecard">
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Batsman</th>
-          <th>R</th>
-          <th>B</th>
-          <th>4</th>
-          <th>6</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[0]">
-          <td>{{ batsman.playerName }}</td>
-          <td>{{ batsman.battingRuns }}</td>
-          <td>{{ batsman.battingBalls }}</td>
-          <td>{{ batsman.battingFours }}</td>
-          <td>{{ batsman.battingSixes }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class='current-innings'>{{ currentInnings }}
+  <a data-ng-if="currentInnings == 'First Innings'" href="#!/{{  matchDetails[0].matchId }}/first/scorecard" class='btn btn-success btn-sm back-to-scoring'>
+        Back to scoring
+  </a>
+  <a data-ng-if="currentInnings == 'Second Innings'" href="#!/{{  matchDetails[0].matchId }}/second/scorecard" class='btn btn-success btn-sm back-to-scoring'>
+      Back to scoring
+  </a>
   </div>
-  <div class="bowling-full-scorecard">
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Bowler</th>
-          <th>O</th>
-          <th>R</th>
-          <th>W</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-ng-repeat="bowler in players[1]" data-ng-if="bowler.bowlingOvers != 0">
-          <td>{{ bowler.playerName }}</td>
-          <td>{{ bowler.bowlingOvers }}</td>
-          <td>{{ bowler.bowlingRuns }}</td>
-          <td>{{ bowler.bowlingWkts }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class='one-score' data-ng-if="currentInnings == 'Second Innings'">
+    {{ matchDetails[0].teamOne}} - <span>{{ matchDetails[0].firstInningsRuns }} / {{ matchDetails[0].firstInningsWkts }}</span>
+    <span class='current-overs'>Overs: {{ matchDetails[0].firstInningsOvers }}</span>
+    <hr>
+    {{ matchDetails[0].teamTwo}} - <span>{{ total_runs }} / {{ wickets }}</span>
+    <span class='current-overs'>Overs: {{ current_over }}</span>
+  </div>
+  <div class='one-score' data-ng-if="currentInnings == 'First Innings'">
+    {{ matchDetails[0].teamOne}} - <span>{{ total_runs }} / {{ wickets }}</span>
+    <span class='current-overs'>Overs: {{ current_over }}</span>
+  </div>
+  <div class="two-score" data-ng-if = "currentInnings == 'First Innings'">
+    <div class="batting-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Batsman</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4</th>
+            <th>6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[0]">
+            <td data-ng-if='batsman.out == false'>{{ batsman.playerName }}</td>
+            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} <span class='out-status'>OUT</span></td>
+            <td>{{ batsman.battingRuns }}</td>
+            <td>{{ batsman.battingBalls }}</td>
+            <td>{{ batsman.battingFours }}</td>
+            <td>{{ batsman.battingSixes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bowling-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>R</th>
+            <th>W</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="bowler in players[1]" data-ng-if="bowler.bowlingOvers != 0">
+            <td>{{ bowler.playerName }}</td>
+            <td>{{ bowler.bowlingOvers }}</td>
+            <td>{{ bowler.bowlingRuns }}</td>
+            <td>{{ bowler.bowlingWkts }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="two-score" data-ng-if = "currentInnings == 'Second Innings'">
+    <div class='three-score'>
+      <span class='current-innings'>{{ currentInnings }}</span>
+    </div>
+    <div class="batting-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Batsman</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4</th>
+            <th>6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[0]">
+            <td data-ng-if='batsman.out == false'>{{ batsman.playerName }}</td>
+            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} OUT</td>
+            <td>{{ batsman.battingRuns }}</td>
+            <td>{{ batsman.battingBalls }}</td>
+            <td>{{ batsman.battingFours }}</td>
+            <td>{{ batsman.battingSixes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bowling-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>R</th>
+            <th>W</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="bowler in players[1]" data-ng-if="bowler.bowlingOvers != 0">
+            <td>{{ bowler.playerName }}</td>
+            <td>{{ bowler.bowlingOvers }}</td>
+            <td>{{ bowler.bowlingRuns }}</td>
+            <td>{{ bowler.bowlingWkts }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='three-score'>
+      <span class='current-innings'>First Innings</span>
+    </div>
+    <div class="batting-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Batsman</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4</th>
+            <th>6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[1]">
+            <td data-ng-if='batsman.out == false'>{{ batsman.playerName }}</td>
+            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} OUT</td>
+            <td>{{ batsman.battingRuns }}</td>
+            <td>{{ batsman.battingBalls }}</td>
+            <td>{{ batsman.battingFours }}</td>
+            <td>{{ batsman.battingSixes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bowling-full-scorecard">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>R</th>
+            <th>W</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="bowler in players[0]" data-ng-if="bowler.bowlingOvers != 0">
+            <td>{{ bowler.playerName }}</td>
+            <td>{{ bowler.bowlingOvers }}</td>
+            <td>{{ bowler.bowlingRuns }}</td>
+            <td>{{ bowler.bowlingWkts }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
