@@ -177,18 +177,19 @@ app.factory('matchService',function($http){
   }
 
   factory.insertBowler = function(){
+    len = players[1].length-1;
     var bowler_data = {
        class: 'current-bowler-name',
-       playerId: players[1][0].playerId,
-       name: players[1][0].playerName,
-       runs: players[1][0].bowlingRuns,
-       balls: players[1][0].bowlingBalls,
-       overs: players[1][0].bowlingOvers,
-       wks: players[1][0].bowlingWkts,
-       wides: players[1][0].bowlingWides,
-       noballs : players[1][0].bowlingNoBalls,
-       economy_rate : players[1][0].bowlingEconomyRate,
-       strike_rate: players[1][0].bowlingStrikeRate,
+       playerId: players[1][len].playerId,
+       name: players[1][len].playerName,
+       runs: players[1][len].bowlingRuns,
+       balls: players[1][len].bowlingBalls,
+       overs: players[1][len].bowlingOvers,
+       wks: players[1][len].bowlingWkts,
+       wides: players[1][len].bowlingWides,
+       noballs : players[1][len].bowlingNoBalls,
+       economy_rate : players[1][len].bowlingEconomyRate,
+       strike_rate: players[1][len].bowlingStrikeRate,
     };
     current_indi_bowlers.unshift(bowler_data);
   }
