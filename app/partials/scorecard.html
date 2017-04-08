@@ -132,15 +132,11 @@
           <td class='text-left' id="{{ batsman.class }}">
             <span ng-hide="editing">
             {{ batsman.name }}
-            <button ng-click="editing = true">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </button>
+            <i ng-click="editing = true" class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </span>
             <span ng-show="editing">
               <input class='change-name' type="text" ng-model="batsman.name">
-              <button ng-click="editing = false">
-                <i class="fa fa-check-square" aria-hidden="true"></i>
-              </button>
+              <i ng-click="editing = false" class="fa fa-check-square" aria-hidden="true"></i>
             </span>
           </td>
           <td class='text-left'>{{ batsman.runs }}</td>
