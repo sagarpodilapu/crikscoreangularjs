@@ -32,6 +32,7 @@ app.factory('scoreService',['matchService', function(matchService){
         players[0][i].out = current_player_array.out;
       }
       if(players[0][i].playerId == current_player_array.playerId) {
+          players[0][i].playerName = current_player_array.name;
           players[0][i].battingRuns = current_player_array.runs;
           players[0][i].battingBalls = current_player_array.balls;
           players[0][i].battingFours = current_player_array.fours;
@@ -46,6 +47,7 @@ app.factory('scoreService',['matchService', function(matchService){
     var players = this.getPlayers();
     for(var i in players[1]) {
       if(players[1][i].playerId == current_player_array.playerId) {
+          players[1][i].playerName = current_player_array.name;
           players[1][i].bowlingBalls = current_player_array.balls;
           players[1][i].bowlingOvers = current_player_array.overs;
           players[1][i].bowlingRuns = current_player_array.runs;

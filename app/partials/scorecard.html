@@ -1,6 +1,13 @@
 <div class="scorecard-details">
   <div class="score-card-info">
     Batting: <span class='team-name'>{{ players[0][0].teamName }}</span>
+    <!-- <span ng-hide="editing">
+    {{name}} <button ng-click="editing = true">Edit</button>
+    </span>
+    <span ng-show="editing">
+      <input type="text" ng-model="name">
+      <button ng-click="editing = false">Save</button>
+    </span> -->
   </div>
   <div class="score-card-info team-name">
     {{ currentInnings }}
@@ -104,7 +111,7 @@
       </div>
     </div>
     <div class="change-anything">
-      Change
+      Change :
       <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm change-strike'>Strike</a>
       <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>Batsman</a>
       <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm new-bowler'>Bowler</a>
@@ -122,7 +129,20 @@
           <th>6</th>
         </tr>
         <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info {{ batsman.class }}">
-          <td class='text-left' id="{{ batsman.class }}">{{ batsman.name }}</td>
+          <td class='text-left' id="{{ batsman.class }}">
+            <span ng-hide="editing">
+            {{ batsman.name }}
+            <button ng-click="editing = true">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+            </span>
+            <span ng-show="editing">
+              <input class='change-name' type="text" ng-model="batsman.name">
+              <button ng-click="editing = false">
+                <i class="fa fa-check-square" aria-hidden="true"></i>
+              </button>
+            </span>
+          </td>
           <td class='text-left'>{{ batsman.runs }}</td>
           <td class='text-left'>{{ batsman.balls }}</td>
           <td class='text-left'>{{ batsman.fours }}</td>
@@ -144,7 +164,20 @@
           <th>E</th>
         </tr>
         <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info {{ bowler.class }}">
-          <td class='text-left' id="{{ bowler.class }}">{{ bowler.name }}</td>
+          <td class='text-left' id="{{ bowler.class }}">
+            <span ng-hide="editing">
+            {{ bowler.name }}
+            <button ng-click="editing = true">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+            </span>
+            <span ng-show="editing">
+              <input class='change-name' type="text" ng-model="bowler.name">
+              <button ng-click="editing = false">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              </button>
+            </span>
+          </td>
           <td class='text-left'>{{ bowler.overs }}</td>
           <td class='text-left'>{{ bowler.runs }}</td>
           <td class='text-left'>{{ bowler.wks }}</td>

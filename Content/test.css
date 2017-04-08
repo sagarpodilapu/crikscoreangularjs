@@ -397,3 +397,8 @@ h2.innings-break-text {
 a.btn.btn-warning.btn-sm.end-innings-btn.ng-scope {
     float: right;
 }
+
+input.change-name{
+    border: thin solid #aaa;
+    padding-left: 5px;
+}
