@@ -7,8 +7,7 @@
   <a href='#!/{{ matchDetails[0].matchId }}/changeBatsman' class='btn btn-success btn-sm'>Start Second Innings</a>
   <!-- <a href="#!/{{  matchDetails[0].matchId }}/fullScorecard" class='btn btn-primary btn-sm'>Scorecard</a> -->
 </div>
-<div class="container full-scorecard">
-  <div class='current-innings'>{{ currentInnings }}</div>
+<div class="full-scorecard">
   <div class='one-score' data-ng-if="currentInnings == 'Second Innings'">
     {{ matchDetails[0].teamOne}} - <span>{{ matchDetails[0].firstInningsRuns }} / {{ matchDetails[0].firstInningsWkts }}</span>
     <span class='current-overs'>Overs: {{ matchDetails[0].firstInningsOvers }}</span>

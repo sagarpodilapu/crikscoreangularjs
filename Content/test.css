@@ -2,7 +2,7 @@ body{
     background:#f8f8f8;
     font-family: 'Droid Serif', serif;
     font-size: 11px;
-    min-height: 626px;
+    min-height: 580px;
     /*
     font-family: 'Open Sans', sans-serif;
     font-family: 'Montserrat', sans-serif; //headings
@@ -225,7 +225,7 @@ a.navbar-brand {
 .team-name {
     font-weight: 900;
     font-size: 14px;
-    margin-right: 25%;
+    margin-right: 20%;
 }
 
 /*.new-match-total {
