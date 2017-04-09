@@ -24,10 +24,10 @@
         <thead>
           <tr>
             <th>Batsman</th>
-            <th>R</th>
-            <th>B</th>
-            <th>4</th>
-            <th>6</th>
+            <th>Rn</th>
+            <th>Bl</th>
+            <th>4s</th>
+            <th>6s</th>
           </tr>
         </thead>
         <tbody>
@@ -47,9 +47,10 @@
         <thead>
           <tr>
             <th>Bowler</th>
-            <th>O</th>
-            <th>R</th>
-            <th>W</th>
+            <th>Ov</th>
+            <th>Rn</th>
+            <th>Wk</th>
+            <th>Ec</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
             <td>{{ bowler.bowlingOvers }}</td>
             <td>{{ bowler.bowlingRuns }}</td>
             <td>{{ bowler.bowlingWkts }}</td>
+            <td>{{ bowler.bowlingEconomyRate }}</td>
           </tr>
         </tbody>
       </table>
@@ -72,10 +74,10 @@
         <thead>
           <tr>
             <th>Batsman</th>
-            <th>R</th>
-            <th>B</th>
-            <th>4</th>
-            <th>6</th>
+            <th>Rn</th>
+            <th>Bl</th>
+            <th>4s</th>
+            <th>6s</th>
           </tr>
         </thead>
         <tbody>
@@ -95,9 +97,10 @@
         <thead>
           <tr>
             <th>Bowler</th>
-            <th>O</th>
-            <th>R</th>
-            <th>W</th>
+            <th>Ov</th>
+            <th>Rn</th>
+            <th>Wk</th>
+            <th>Ec</th>
           </tr>
         </thead>
         <tbody>
@@ -106,6 +109,7 @@
             <td>{{ bowler.bowlingOvers }}</td>
             <td>{{ bowler.bowlingRuns }}</td>
             <td>{{ bowler.bowlingWkts }}</td>
+            <td>{{ bowler.bowlingEconomyRate }}</td>
           </tr>
         </tbody>
       </table>
@@ -118,16 +122,16 @@
         <thead>
           <tr>
             <th>Batsman</th>
-            <th>R</th>
-            <th>B</th>
-            <th>4</th>
-            <th>6</th>
+            <th>Rn</th>
+            <th>Bl</th>
+            <th>4s</th>
+            <th>6s</th>
           </tr>
         </thead>
         <tbody>
           <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[1]">
             <td data-ng-if='batsman.out == false'>{{ batsman.playerName }}</td>
-            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} OUT</td>
+            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} <span class='out-status'>OUT</span></td>
             <td>{{ batsman.battingRuns }}</td>
             <td>{{ batsman.battingBalls }}</td>
             <td>{{ batsman.battingFours }}</td>
@@ -141,9 +145,10 @@
         <thead>
           <tr>
             <th>Bowler</th>
-            <th>O</th>
-            <th>R</th>
-            <th>W</th>
+            <th>Ov</th>
+            <th>Rn</th>
+            <th>Wk</th>
+            <th>Ec</th>
           </tr>
         </thead>
         <tbody>

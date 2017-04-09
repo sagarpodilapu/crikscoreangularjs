@@ -2,7 +2,7 @@ body{
     background:#f8f8f8;
     font-family: 'Droid Serif', serif;
     font-size: 11px;
-    min-height: 760px;
+    min-height: 666px;
     /*
     font-family: 'Open Sans', sans-serif;
     font-family: 'Montserrat', sans-serif; //headings
@@ -99,10 +99,15 @@ h5.main-heading-view {
 }
 .new-player {
     background: #fff;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 10px;
     border: thin solid #ddd;
     margin-top: 10px;
+}
+
+.new-player.intro {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .team-one-details {
@@ -213,17 +218,14 @@ a.navbar-brand {
 }
 
 .score-card-info {
-    margin-top: 5px;
-    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
-    padding-left: 5px;
     display: inline-block;
-    margin-right: 20px;
 }
 
 .team-name {
     font-weight: 900;
     font-size: 14px;
+    margin-right: 25%;
 }
 
 /*.new-match-total {
@@ -390,11 +392,6 @@ h2.innings-break-text {
     padding-bottom: 5px;
 }
 
-.new-player.intro {
-    font-size: 16px;
-    font-weight: 600;
-}
-
 a.btn.btn-warning.btn-sm.end-innings-btn.ng-scope {
     float: right;
 }
@@ -402,4 +399,16 @@ a.btn.btn-warning.btn-sm.end-innings-btn.ng-scope {
 input.change-name{
     border: thin solid #aaa;
     padding-left: 5px;
+}
+
+.fb-like span, iframe {
+    width: 100%!important;
+}
+
+.instructions, .end-innings-div {
+    display: inline-block;
+}
+
+.innings-instructions-end {
+    margin-bottom: 5px;
 }

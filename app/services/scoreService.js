@@ -9,20 +9,19 @@ app.factory('scoreService',['matchService', function(matchService){
   var wickets = 0;
 
   factory.insertScore = function(scoreDetails, currentBatsman, currentBowler, currentBallDetails, whichBatsman){
-    scoreDetails[0].whoIsOut = whichBatsman;
+    scoreDetails.whoIsOut = whichBatsman;
     score.push(scoreDetails);
-    next_ball = scoreDetails[0].current_ball_number+1;
-    total_runs = scoreDetails[0].total_runs;
-    wickets = scoreDetails[0].wickets;
-    current_ball_number = scoreDetails[0].current_ball_number;
+    next_ball = scoreDetails.current_ball_number+1;
+    total_runs = scoreDetails.total_runs;
+    wickets = scoreDetails.wickets;
+    current_ball_number = scoreDetails.current_ball_number;
     current_over = Math.floor(current_ball_number/6) + "." + current_ball_number%6;
     next_ball = Math.floor(next_ball/6) + "." + next_ball%6;
     this.updatePlayersBatsmen(currentBatsman, whichBatsman);
-    if(scoreDetails[0].out == true) {
+    if(scoreDetails.out == true) {
       this.updateBatsmen(whichBatsman);
     }
     this.updatePlayersBowlers(currentBowler);
-    this.last_ten_balls = currentBallDetails;
   }
 
   factory.updatePlayersBatsmen = function(current_player_array, who_is_out){
@@ -97,14 +96,6 @@ app.factory('scoreService',['matchService', function(matchService){
 
   factory.insertBowler = function(bowler_id, bowler_name, bowler_class){
     var current_indi_bowlers = this.getCurrentIndiBowlers();
-    if(current_indi_bowlers.length > 1){
-      for(var i in current_indi_bowlers) {
-        if(current_indi_bowlers[i].playerId == bowler_id) {
-          current_indi_bowler = current_indi_bowlers.reverse();
-          return false;
-        }
-      }
-    }
     players = this.getPlayers();
     for(var i in players[1]) {
       if(bowler_id == players[1][i].playerId) {
@@ -123,25 +114,20 @@ app.factory('scoreService',['matchService', function(matchService){
         };
         break;
       }
-
     }
-    current_indi_bowlers.unshift(bowler_data);
-    current_indi_bowlers[1].class='previous-bowler-name';
-    if(current_indi_bowlers.length > 2) {
-      this.updateBowlers(current_indi_bowlers[1].playerId);
-    }
+    current_indi_bowlers[0] = bowler_data;
     this.setCurrentIndiBowlers(current_indi_bowlers);
   }
 
-  factory.updateBowlers = function(player_id) {
-    var current_indi_bowlers = this.getCurrentIndiBowlers();
-    for(var i in current_indi_bowlers) {
-      if(current_indi_bowlers[i].playerId === player_id) {
-        current_indi_bowlers.splice(i,1);
-      }
-    }
-    this.setCurrentIndiBowlers(current_indi_bowlers);
-  }
+  // factory.updateBowlers = function(player_id) {
+  //   var current_indi_bowlers = this.getCurrentIndiBowlers();
+  //   for(var i in current_indi_bowlers) {
+  //     if(current_indi_bowlers[i].playerId === player_id) {
+  //       current_indi_bowlers.splice(i,1);
+  //     }
+  //   }
+  //   this.setCurrentIndiBowlers(current_indi_bowlers);
+  // }
 
   factory.getScore = function(){
     return score;

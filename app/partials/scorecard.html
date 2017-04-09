@@ -1,23 +1,20 @@
 <div class="scorecard-details">
-  <div class="score-card-info">
+  <!-- <div class="score-card-info">
     Batting: <span class='team-name'>{{ players[0][0].teamName }}</span>
-    <!-- <span ng-hide="editing">
-    {{name}} <button ng-click="editing = true">Edit</button>
-    </span>
-    <span ng-show="editing">
-      <input type="text" ng-model="name">
-      <button ng-click="editing = false">Save</button>
-    </span> -->
-  </div>
-  <div class="score-card-info team-name">
-    {{ currentInnings }}
-  </div>
-  <a data-ng-if="currentInnings == 'Second Innings'" data-ng-click="endMatch()" class='btn btn-warning btn-sm end-innings-btn'> End Match </a>
-  <a data-ng-if="currentInnings == 'First Innings'" data-ng-click="endInnings()" class='btn btn-warning btn-sm end-innings-btn'> End Innings </a>
-  <div class="instructions">
-    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#instructionsModal">
-      Instructions
-    </button>
+  </div> -->
+  <div class="innings-instructions-end">
+    <div class="score-card-info team-name">
+      {{ currentInnings }}
+    </div>
+    <div class="instructions">
+      <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#instructionsModal">
+        Instructions
+      </button>
+    </div>
+    <div class="end-innings-div">
+      <a data-ng-if="currentInnings == 'Second Innings'" data-ng-click="endMatch()" class='btn btn-warning btn-sm'> End Match </a>
+      <a data-ng-if="currentInnings == 'First Innings'" data-ng-click="endInnings()" class='btn btn-warning btn-sm'> End Innings </a>
+    </div>
   </div>
   <div class="score-card-info to-win" data-ng-if="currentInnings == 'Second Innings'">
     To win: {{ runsLeft }} in {{ ballsLeft }} balls
@@ -33,9 +30,7 @@
         <td class='text-left'>{{ total_runs}}/{{ wickets }}</td>
         <td class='text-left'>{{ current_over }} / {{ matchDetails[0].totalOvers }}</td>
         <td class='text-left'>
-          <span class='past-balls'>
-            <span class='last-ten-balls' data-ng-repeat = "ball in lastSixBalls track by $index">{{ ball }}</span>
-          </span>
+          <span class='last-ten-balls' data-ng-repeat = "ball in lastSixBalls track by $index">{{ ball }}</span>
         </td>
       </tr>
     </table>
@@ -48,49 +43,49 @@
       <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="2">2</button>
       <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="3">3</button>
       <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="4">4</button>
-      <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="5">5</button>
+      <!-- <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="5">5</button> -->
       <button type="button" class="btn btn-default btn-sm" data-ng-click = "currentRun(event)" value="6">6</button>
     </div>
     <div class="current-action-inner current-batsman-name">
       <label class="custom-control custom-radio">
-        <input id="wide-ball" name="extra" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="wide" disabled>
+        <input id="wide-ball" name="extra" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addExtra(event)" value="wide" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Wide</span>
       </label>
       <label class="custom-control custom-radio">
-        <input id="no-ball" name="extra" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="noball" disabled>
+        <input id="no-ball" name="extra" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addExtra(event)" value="noball" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">NoBall</span>
       </label>
       <label class="custom-control custom-radio no-extra">
-        <input id="no-extra" name="extra" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="noextra" disabled>
+        <input id="no-extra" name="extra" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addExtra(event)" value="noextra" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">No Extra</span>
       </label>
       <label class="custom-control custom-radio">
-        <input id="byes" name="extra" type="radio" class="custom-control-input" data-ng-click = "addExtra(event)" value="bye" disabled>
+        <input id="byes" name="extra" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addExtra(event)" value="bye" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Byes</span>
       </label>
     </div>
     <div class="current-action-inner current-batsman-name">
       <label class="custom-control custom-radio wicket">
-        <input id="wicket" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addWicket" disabled>
+        <input id="wicket" name="wicket" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addWicket(event)" value="addWicket" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Out</span>
       </label>
       <label class="custom-control custom-radio">
-        <input id="run-out" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addRunOut" disabled>
+        <input id="run-out" name="wicket" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addWicket(event)" value="addRunOut" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Run Out</span>
       </label>
       <label class="custom-control custom-radio not-out">
-        <input id="not-out" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addNotOut" disabled>
+        <input id="not-out" name="wicket" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addWicket(event)" value="addNotOut" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Not Out</span>
       </label>
       <label class="custom-control custom-radio">
-        <input id="retired" name="wicket" type="radio" class="custom-control-input" data-ng-click = "addWicket(event)" value="addRetired" disabled>
+        <input id="retired" name="wicket" type="radio" class="custom-control-input disable-toggle" data-ng-click = "addWicket(event)" value="addRetired" disabled>
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Retired</span>
       </label>
@@ -99,12 +94,12 @@
       <button type="button" name="button" data-ng-click="insertScore()" class='btn btn-success btn-sm submit-score' disabled>Submit Score</button>
       <div class="who-is-runout">
         <label class="custom-control custom-radio">
-          <input id="{{ current_indi_batsman_stats[0].playerId }}" name="whichBatsman" type="radio" class="custom-control-input" data-ng-click = "whichBatsman(current_indi_batsman_stats[0].playerId)" value="{{ current_indi_batsman_stats[0].playerId }}" disabled>
+          <input id="{{ current_indi_batsman_stats[0].playerId }}" name="whichBatsman" type="radio" class="custom-control-input disable-toggle" data-ng-click = "whichBatsman(current_indi_batsman_stats[0].playerId)" value="{{ current_indi_batsman_stats[0].playerId }}" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">{{ current_indi_batsman_stats[0].name }}</span>
         </label>
         <label class="custom-control custom-radio">
-          <input id="{{ current_indi_batsman_stats[1].playerId }}" name="whichBatsman" type="radio" class="custom-control-input" data-ng-click = "whichBatsman(current_indi_batsman_stats[1].playerId)" value="{{ current_indi_batsman_stats[1].playerId }}" disabled>
+          <input id="{{ current_indi_batsman_stats[1].playerId }}" name="whichBatsman" type="radio" class="custom-control-input disable-toggle" data-ng-click = "whichBatsman(current_indi_batsman_stats[1].playerId)" value="{{ current_indi_batsman_stats[1].playerId }}" disabled>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">{{ current_indi_batsman_stats[1].name }}</span>
         </label>
@@ -113,7 +108,7 @@
     <div class="change-anything">
       Change :
       <a data-ng-click = "changeStrike()" class='btn btn-info btn-sm change-strike'>Strike</a>
-      <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>Batsman</a>
+      <!-- <a href="#!/{{ matchDetails[0].matchId }}/changeBatsman" class='btn btn-success btn-sm new-batsman'>Batsman</a> -->
       <a href="#!/{{  matchDetails[0].matchId }}/changeBowler" class='btn btn-warning btn-sm new-bowler'>Bowler</a>
       <a href="#!/{{  matchDetails[0].matchId }}/fullScorecard" class='btn btn-default btn-sm'>Scorecard</a>
     </div>
@@ -163,15 +158,11 @@
           <td class='text-left' id="{{ bowler.class }}">
             <span ng-hide="editing">
             {{ bowler.name }}
-            <button ng-click="editing = true">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </button>
+            <i ng-click="editing = true" class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </span>
             <span ng-show="editing">
               <input class='change-name' type="text" ng-model="bowler.name">
-              <button ng-click="editing = false">
-                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-              </button>
+              <i ng-click="editing = false" class="fa fa-check-square-o" aria-hidden="true"></i>
             </span>
           </td>
           <td class='text-left'>{{ bowler.overs }}</td>

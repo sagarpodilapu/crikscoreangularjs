@@ -126,9 +126,9 @@ app.factory('matchService',function($http){
     current_innings = 'Second Innings';
     current_indi_batsmen = [];
     current_indi_bowlers = [];
-    this.insertBatsman();
-    this.insertStriker();
-    this.insertBowler();
+    // this.insertBatsman();
+    // this.insertStriker();
+    // this.insertBowler();
 
   }
 
