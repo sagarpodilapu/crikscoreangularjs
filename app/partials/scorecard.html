@@ -1,26 +1,24 @@
 <div class="scorecard-details">
-  <!-- <div class="score-card-info">
-    Batting: <span class='team-name'>{{ players[0][0].teamName }}</span>
-  </div> -->
-  <div class="innings-instructions-end">
-    <div class="score-card-info team-name">
-      {{ currentInnings }}
-    </div>
-    <div class="instructions">
-      <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#instructionsModal">
-        Instructions
-      </button>
-    </div>
-    <div class="end-innings-div">
-      <a data-ng-if="currentInnings == 'Second Innings'" data-ng-click="endMatch()" class='btn btn-warning btn-sm'> End Match </a>
-      <a data-ng-if="currentInnings == 'First Innings'" data-ng-click="endInnings()" class='btn btn-warning btn-sm'> End Innings </a>
-    </div>
-  </div>
-  <div class="score-card-info to-win" data-ng-if="currentInnings == 'Second Innings'">
-    To win: {{ runsLeft }} in {{ ballsLeft }} balls
-  </div>
+  <!-- <spinner></spinner> -->
   <div class="common-sc score-details">
     <table class='table'>
+      <tr data-ng-if="currentInnings == 'Second Innings'">
+        <th cols-an='3'>To win: {{ runsLeft }} in {{ ballsLeft }} balls</th>
+      </tr>
+      <tr>
+        <th>
+          {{ currentInnings }}
+        </th>
+        <th>
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#instructionsModal">
+            Instructions
+          </button>
+        </th>
+        <th>
+          <a data-ng-if="currentInnings == 'Second Innings'" data-ng-click="endMatch()" class='btn btn-warning btn-sm'> End Match </a>
+          <a data-ng-if="currentInnings == 'First Innings'" data-ng-click="endInnings()" class='btn btn-warning btn-sm'> End Innings </a>
+        </th>
+      </tr>
       <tr>
         <th>Score</th>
         <th>Overs</th>

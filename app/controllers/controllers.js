@@ -1,5 +1,5 @@
   var controllers = {};
-  controllers.addMatchController = function($scope, $location, $routeParams, matchService) {
+  controllers.addMatchController = function($scope, $location, $routeParams, matchService, usSpinnerService) {
   $scope.possible_overs = [];
   $scope.possible_players = [];
   for(var i=5;i<=11;i++) {
@@ -15,17 +15,27 @@
     $scope.teamNames = matchService.getTeams();
   }
 
+  $scope.startSpin = function(){
+      usSpinnerService.spin('spinner-1');
+  }
+
+  $scope.stopSpin = function(){
+      usSpinnerService.stop('spinner-1');
+  }
+
   $scope.insertMatch = function(){
     var total_players = parseInt($scope.newMatch.totalPlayers);
     var total_overs = parseInt($scope.newMatch.totalOvers);
 
     matchService.insertMatch(total_players, total_overs);
     var matchId = $scope.matchDetails[0].matchId;
+    $scope.startSpin();
     $location.path('/'+matchId+'/first/scorecard');
   }
 
   $scope.startMatch = function(){
     var matchId = $scope.matchDetails[0].matchId;
+    $scope.startSpin();
     $location.path('/'+matchId+'/selectBatsman');
   }
 
@@ -34,7 +44,7 @@
   }
 };
 
-controllers.scorecardController = function($scope, $routeParams, $location, scoreService) {
+controllers.scorecardController = function($scope, $routeParams, $location, scoreService, usSpinnerService) {
 init();
 
 var param1 = $routeParams.matchId;
@@ -63,9 +73,18 @@ function init(){
   $scope.ballsLeft = $scope.matchDetails[0].totalOvers*6 - $scope.current_ball_number;
 }
 
+$scope.startSpin = function(){
+    usSpinnerService.spin('spinner-1');
+}
+
+$scope.stopSpin = function(){
+    usSpinnerService.stop('spinner-1');
+}
+
 $scope.endInnings = function(){
   scoreService.endInnings($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
+  $scope.startSpin();
   $location.path('/'+matchId+'/inningsBreak');
 }
 
@@ -73,12 +92,14 @@ $scope.endInnings = function(){
 $scope.reload = function()
 {
    location.reload();
+   $scope.startSpin();
    $location.path('/addMatch');
 }
 
 $scope.endMatch = function(){
   scoreService.endMatch($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
+  $scope.startSpin();
   $location.path('/'+matchId+'/matchEnded');
 }
 
@@ -87,6 +108,7 @@ $scope.selectedPlayer = function(player_id){
 }
 
 $scope.insertScore = function(){
+  $scope.startSpin();
   var score_details = [];
   var matchId = $scope.matchDetails[0].matchId;
   var current_event = '';
@@ -182,6 +204,7 @@ $scope.insertScore = function(){
     }
   }else {
     if($scope.out == true) {
+      $scope.startSpin();
       $location.path('/'+matchId+'/changeBatsman');
     }
 
@@ -190,6 +213,7 @@ $scope.insertScore = function(){
     }
     if(current_ball_local % 6 == 0 && current_ball_local > 0 && $scope.extra_run != 1) {
       if(!$scope.out) {
+        $scope.startSpin();
         $location.path('/'+matchId+'/changeBowler');
       }
       $scope.changeStrike();
@@ -216,6 +240,7 @@ $scope.insertScore = function(){
     // $scope.next_ball = scoreService.getNextBall();
     $scope.out = false;
   }
+  $scope.stopSpin();
 
 };
 
@@ -230,13 +255,17 @@ $scope.changeBatsman = function(){
   }
   scoreService.insertBatsman($scope.currentPlayer, batsman_name, batsman_class);
   if($scope.current_indi_batsman_stats.length < 2) {
+    $scope.startSpin();
     $location.path('/'+matchId+'/changeBatsman');
   }else if($scope.current_indi_bowler_stats.length < 1) {
+    $scope.startSpin();
     $location.path('/'+matchId+'/changeBowler');
   }else if(current_ball_local % 6 == 0 && current_ball_local > 0) {
+    $scope.startSpin();
     $location.path('/'+matchId+'/changeBowler');
     $scope.changeStrike();
   }else {
+    $scope.startSpin();
     $location.path('/'+matchId+'/first/scorecard');
   }
 }
@@ -250,6 +279,7 @@ $scope.bowlerChange = function(){
   var bowler_class = 'current-bowler-name';
   scoreService.insertBowler($scope.currentPlayer, bowler_name, bowler_class);
   var matchId = $scope.matchDetails[0].matchId;
+  $scope.startSpin();
   $location.path('/'+matchId+'/first/scorecard');
 }
 

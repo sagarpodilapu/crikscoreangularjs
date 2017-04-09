@@ -6,7 +6,7 @@
   /partials
   /views
 */
-var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics']);
+var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics', 'angularSpinner']);
 app.config(function ($routeProvider){
   $routeProvider
   .when('/',{
@@ -60,3 +60,10 @@ app.config(['AnalyticsProvider', function (AnalyticsProvider) {
    AnalyticsProvider.setAccount('UA-96467533-1');
    AnalyticsProvider.setDomainName('https://www.crikscore.com/');
 }]).run(['Analytics', function(Analytics) { }]);
+// app.directive("spinner", function(){
+//   return {
+//   restrict: 'E',
+//   scope: {enable:"="},
+//   template: '<i class="fa fa-spinner" aria-hidden="true"></i>'
+//   }
+// });

@@ -123,13 +123,9 @@ app.factory('matchService',function($http){
     match[0].firstInningsBalls = total_balls;
     match[0].firstInningsOvers = total_overs;
     players.reverse();
-    current_innings = 'Second Innings';
     current_indi_batsmen = [];
     current_indi_bowlers = [];
-    // this.insertBatsman();
-    // this.insertStriker();
-    // this.insertBowler();
-
+    current_innings = 'Second Innings';
   }
 
   factory.endMatch = function(total_runs, total_wickets, total_overs, total_balls) {
