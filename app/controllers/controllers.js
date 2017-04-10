@@ -74,11 +74,13 @@ function init(){
 }
 
 $scope.startSpin = function(){
-    usSpinnerService.spin('spinner-1');
+  console.log('start spin');
+  usSpinnerService.spin('spinner-1');
 }
 
 $scope.stopSpin = function(){
-    usSpinnerService.stop('spinner-1');
+  console.log('stop spin');
+  usSpinnerService.stop('spinner-1');
 }
 
 $scope.endInnings = function(){
@@ -240,7 +242,7 @@ $scope.insertScore = function(){
     // $scope.next_ball = scoreService.getNextBall();
     $scope.out = false;
   }
-  $scope.stopSpin();
+  // $scope.stopSpin();
 
 };
 

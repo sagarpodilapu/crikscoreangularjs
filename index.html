@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>CrikScore - Add score to any match</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="1EaHaq_PSqshlpvW1wV4UrWTaXIUnVfbKF6KNZuSPOc" />
     <link rel="stylesheet" href="Content/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Josefin+Sans|Montserrat|Nunito|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="Content/test.css">
@@ -21,27 +22,11 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
     <nav class="navbar navbar-inverse bg-inverse">
-      <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
       <a class="navbar-brand" href="#">CrikScore <span class='caption-text'>For the love of <i>cricket</i></span></a>
-
-      <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" data-ng-controller="navbarController">
-          <a class="nav-item nav-link" href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#!/scorecard" data-ng-class="{'active':getClass('/scorecard')}">Scorecard</a>
-          <a class="nav-item nav-link" href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a>
-        </div>
-      </div> -->
     </nav>
     <div>
-      <!-- <ol class="inner-nav">
-        <li class="add-match-li"><a href="#!/addMatch" data-ng-class="{'active':getClass('/addMatch')}">Add Match</a></li>
-        <li class="add-match-li"><a href="#!/scorecard" data-ng-class="{'active':getClass('/{{ matchDetails[0].matchId }}/scorecard')}">Scorecard</a></li>
-        <li class="add-match-li"><a href="#!/login" data-ng-class="{'active':getClass('/login')}">Login</a></li>
-      </ol> -->
       <div class="col col-md-5 col-sm-12" data-ng-view="">
-        <span us-spinner spinner-key="spinner-1"></span>
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
       </div>
     </div>
     <script src="Scripts/angular.min.js"></script>
@@ -51,6 +36,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular-google-analytics.min.js"></script>
     <script src="node_modules/angular-spinner/dist/angular-spinner.min.js"></script>
+    <!-- <script src="node_modules/spin.js/spin.min.js"></script> -->
     <script src="app/app.js"></script>
     <script src="app/controllers/controllers.js"></script>
     <script src="app/services/matchService.js"></script>
@@ -67,16 +53,6 @@
         messagingSenderId: "124167256583"
       };
       firebase.initializeApp(config);
-    </script> -->
-    <!-- <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-96467533-1', 'auto');
-      ga('send', 'pageview');
-
     </script> -->
   </body>
 </html>
