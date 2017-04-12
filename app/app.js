@@ -6,7 +6,7 @@
   /partials
   /views
 */
-var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics', 'angularSpinner']);
+var app = angular.module("crikscoreApp",['ngRoute','angular-google-analytics']);
 app.config(function ($routeProvider){
   $routeProvider
   .when('/',{
@@ -66,4 +66,60 @@ app.config(['AnalyticsProvider', function (AnalyticsProvider) {
 //   scope: {enable:"="},
 //   template: '<i class="fa fa-spinner" aria-hidden="true"></i>'
 //   }
+// });
+app.filter('outPlayers', function() {
+  return function( players) {
+    var filtered = [];
+    angular.forEach(players, function(players) {
+      if(players.out) {
+        filtered.push(players);
+      }
+    });
+    return filtered;
+  };
+});
+app.filter('notPlayed', function() {
+  return function(players, striker, nonStriker) {
+    var filtered = [];
+    angular.forEach(players, function(players) {
+      if(!players.out && players.playerId != striker && players.playerId != nonStriker) {
+        filtered.push(players);
+      }
+    });
+    return filtered;
+  };
+});
+app.filter('notOutBatsmen', function() {
+  return function(players) {
+    var filtered = [];
+    angular.forEach(players, function(player) {
+      if(player.out == false && player.battingBalls > 0 ) {
+        filtered.push(player);
+      }
+    });
+    return filtered;
+  };
+});
+app.filter('didNotBat', function() {
+  return function(players) {
+    var filtered = [];
+    angular.forEach(players, function(players) {
+      if(players.out == false && players.battingBalls == 0 ) {
+        filtered.push(players);
+      }
+    });
+    return filtered;
+  };
+});
+
+// app.filter('outPlayers', function() {
+//   return function( items, userAccessLevel) {
+//     var filtered = [];
+//     angular.forEach(items, function(item) {
+//       if(userAccessLevel >= item.minAccess) {
+//         filtered.push(item);
+//       }
+//     });
+//     return filtered;
+//   };
 // });

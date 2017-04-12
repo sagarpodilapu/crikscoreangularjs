@@ -21,14 +21,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[1]">
-            <td data-ng-if='batsman.out == false && (batsman.playerId == current_indi_batsman_stats[0].playerId || batsman.playerId == current_indi_batsman_stats[1].playerId) '>{{ batsman.playerName }}</td>
-            <td data-ng-if='batsman.out == true'>{{ batsman.playerName }} <span class='out-status'>OUT</span></td>
-            <td>{{ batsman.battingRuns }}</td>
-            <td>{{ batsman.battingBalls }}</td>
-            <td>{{ batsman.battingFours }}</td>
-            <td>{{ batsman.battingSixes }}</td>
-          </tr>
+          <tbody>
+            <tr ng:class="{true:'player-out', false:''}[batsman.out == true]" data-ng-repeat="batsman in players[1] | outPlayers">
+              <td>{{ batsman.playerName }} <span data-ng-if='batsman.out == true' class='out-status'>OUT</span></td>
+              <td>{{ batsman.battingRuns }}</td>
+              <td>{{ batsman.battingBalls }}</td>
+              <td>{{ batsman.battingFours }}</td>
+              <td>{{ batsman.battingSixes }}</td>
+            </tr>
+            <tr data-ng-repeat="batsman in players[1] | notOutBatsmen">
+              <td>{{ batsman.playerName }}</td>
+              <td>{{ batsman.battingRuns }}</td>
+              <td>{{ batsman.battingBalls }}</td>
+              <td>{{ batsman.battingFours }}</td>
+              <td>{{ batsman.battingSixes }}</td>
+            </tr>
+            <tr>
+              <td colspan='5'>
+                <span class='yet-to-bat'>Did Not Bat <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>:</span>
+                <span class= 'yet-to-bat-players' data-ng-repeat="batsman in players[1] | didNotBat">{{ batsman.playerName }} </span>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>

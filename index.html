@@ -4,13 +4,12 @@
     <meta charset="utf-8">
     <title>CrikScore - Add score to any match</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="google-site-verification" content="1EaHaq_PSqshlpvW1wV4UrWTaXIUnVfbKF6KNZuSPOc" />
     <link rel="stylesheet" href="Content/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Josefin+Sans|Montserrat|Nunito|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="Content/test.css">
     <link rel="stylesheet" href="Content/font-awesome.min.css">
   </head>
-  <body data-ng-init="">
+  <body data-ng-init="" class=''>
     <div id="fb-root"></div>
     <script>
       (function(d, s, id) {
@@ -26,7 +25,7 @@
     </nav>
     <div>
       <div class="col col-md-5 col-sm-12" data-ng-view="">
-        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <!-- <spinner name="booksSpinner" img-src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/10607/spinner3.gif'></spinner> -->
       </div>
     </div>
     <script src="Scripts/angular.min.js"></script>
@@ -35,7 +34,7 @@
     <script src="Scripts/tether.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular-google-analytics.min.js"></script>
-    <script src="node_modules/angular-spinner/dist/angular-spinner.min.js"></script>
+    <!-- <script src="node_modules/angular-spinners/dist/angular-spinners.min.js"></script> -->
     <!-- <script src="node_modules/spin.js/spin.min.js"></script> -->
     <script src="app/app.js"></script>
     <script src="app/controllers/controllers.js"></script>

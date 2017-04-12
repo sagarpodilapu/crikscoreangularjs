@@ -24,11 +24,9 @@ body{
     margin-top: 0.2em;
 }
 .common-sc{
-  margin: 5px;
-  padding: 5px;
-  background: #fff;
-  border: thin solid #000;
-  border-radius: 5px;
+ margin: 5px;
+ padding: 5px;
+ border-bottom: thin solid #000;
 }
 .past-balls span{
   display: inline-block;
@@ -49,6 +47,7 @@ span.add-run-text {
 .last-ten-balls {
     margin-right: 5px;
     padding: 0px 5px;
+    border-bottom: thin solid #aaa;
 }
 .score-info td{
   padding: 5px 0px 0px 5px;
@@ -81,21 +80,19 @@ h5.main-heading-view {
   font-weight: 700;
 }
 
-.scorecard-details th{
-  color: #6f6f6f;
-  font-weight: 300;
-  font-family: 'Montserrat', sans-serif;
-  padding: 5px;
-}
-
 .scorecard-details.ng-scope {
     margin-top: 20px;
+    margin-bottom: 10px;
+}
+span.yet-to-bat-players.ng-binding.ng-scope {
+    font-size: 10px;
 }
 
 .who-is-runout {
     text-align: center;
     display: none;
-    width: 65%;
+    width: 100%;
+    margin-bottom: 5px;
 }
 .new-player {
     background: #fff;
@@ -156,8 +153,8 @@ input[type=text], .form-check.form-check-inline, label.custom-control.custom-rad
 }
 
 label.custom-control.custom-radio {
-    margin: 0px 5px 0px 5px;
-    padding: 5px 10px 0px 20px;
+    margin: 0px 5px;
+    padding: 5px 0px 0px 20px;
 }
 
 .btn:active, .btn:focus{
@@ -412,3 +409,52 @@ input.change-name{
 .innings-instructions-end {
     margin-bottom: 5px;
 }
+
+.common-sc.score-details {
+    background: #f1f1f1;
+}
+
+.common-sc.current-batsmen {
+    background: #efefef;
+}
+.common-sc.current-bowler {
+    background: #efefef;
+}
+
+.common-sc.score-details th, .common-sc.current-batsmen th, .common-sc.current-bowler th {
+    font-weight: 900;
+    padding: 5px;
+}
+td.text-left.ng-binding {
+    padding: 5px;
+}
+
+td.text-left {
+    padding: 5px;
+}
+
+.score{
+  font-size:16px;
+}
+.score .score-overs{
+  font-size: 14px;
+  font-weight: 100;
+}
+.last-six-balls{
+  width: 40%;
+}
+
+
+/*.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}*/
