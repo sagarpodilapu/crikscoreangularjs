@@ -85,6 +85,7 @@ app.factory('matchService',function($http){
         bowlingNoBalls: 0,
         bowlingEconomyRate: 0,
         bowlingStrikeRate: 0,
+
       };
       bowler_data = {
         id:i,
@@ -146,13 +147,13 @@ app.factory('matchService',function($http){
     var new_batsman = {
        class: 'current-batsman-name',
        playerId: players[0][0].playerId,
-       name: players[0][0].playerName,
-       runs: players[0][0].battingRuns,
-       balls: players[0][0].battingBalls,
-       fours: players[0][0].battingFours,
-       sixes: players[0][0].battingSixes,
+       playerName: players[0][0].playerName,
+       battingRuns: players[0][0].battingRuns,
+       battingBalls: players[0][0].battingBalls,
+       battingFours: players[0][0].battingFours,
+       battingSixes: players[0][0].battingSixes,
        out: players[0][0].out,
-       strike_rate: players[0][0].battingStrikeRate,
+       battingStrikeRate: players[0][0].battingStrikeRate,
     };
     current_indi_batsmen.unshift(new_batsman);
   }
@@ -161,13 +162,13 @@ app.factory('matchService',function($http){
     var new_batsman = {
        class: 'non-striker-name',
        playerId: players[0][1].playerId,
-       name: players[0][1].playerName,
-       runs: players[0][1].battingRuns,
-       balls: players[0][1].battingBalls,
-       fours: players[0][1].battingFours,
-       sixes: players[0][1].battingSixes,
+       playerName: players[0][1].playerName,
+       battingRuns: players[0][1].battingRuns,
+       battingBalls: players[0][1].battingBalls,
+       battingFours: players[0][1].battingFours,
+       battingSixes: players[0][1].battingSixes,
        out: players[0][1].out,
-       strike_rate: players[0][1].battingStrikeRate,
+       battingStrikeRate: players[0][1].battingStrikeRate,
     };
     current_indi_batsmen.unshift(new_batsman);
   }
@@ -177,15 +178,15 @@ app.factory('matchService',function($http){
     var bowler_data = {
        class: 'current-bowler-name',
        playerId: players[1][len].playerId,
-       name: players[1][len].playerName,
-       runs: players[1][len].bowlingRuns,
-       balls: players[1][len].bowlingBalls,
-       overs: players[1][len].bowlingOvers,
-       wks: players[1][len].bowlingWkts,
-       wides: players[1][len].bowlingWides,
-       noballs : players[1][len].bowlingNoBalls,
-       economy_rate : players[1][len].bowlingEconomyRate,
-       strike_rate: players[1][len].bowlingStrikeRate,
+       playerName: players[1][len].playerName,
+       bowlingRuns: players[1][len].bowlingRuns,
+       bowlingBalls: players[1][len].bowlingBalls,
+       bowlingOvers: players[1][len].bowlingOvers,
+       bowlingWkts: players[1][len].bowlingWkts,
+       bowlingWides: players[1][len].bowlingWides,
+       bowlingNoBalls : players[1][len].bowlingNoBalls,
+       bowlingEconomyRate : players[1][len].bowlingEconomyRate,
+       bowlingStrikeRate: players[1][len].bowlingStrikeRate,
     };
     current_indi_bowlers.unshift(bowler_data);
   }

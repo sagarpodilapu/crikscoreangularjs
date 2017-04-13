@@ -31,12 +31,12 @@ app.factory('scoreService',['matchService', function(matchService){
         players[0][i].out = current_player_array.out;
       }
       if(players[0][i].playerId == current_player_array.playerId) {
-          players[0][i].playerName = current_player_array.name;
-          players[0][i].battingRuns = current_player_array.runs;
-          players[0][i].battingBalls = current_player_array.balls;
-          players[0][i].battingFours = current_player_array.fours;
-          players[0][i].battingSixes = current_player_array.sixes;
-          players[0][i].battingStrikeRate = current_player_array.strike_rate;
+          players[0][i].playerName = current_player_array.playerName;
+          players[0][i].battingRuns = current_player_array.battingRuns;
+          players[0][i].battingBalls = current_player_array.battingBalls;
+          players[0][i].battingFours = current_player_array.battingFours;
+          players[0][i].battingSixes = current_player_array.battingSixes;
+          players[0][i].battingStrikeRate = current_player_array.battingStrikeRate;
         break;
       }
     }
@@ -46,15 +46,15 @@ app.factory('scoreService',['matchService', function(matchService){
     var players = this.getPlayers();
     for(var i in players[1]) {
       if(players[1][i].playerId == current_player_array.playerId) {
-          players[1][i].playerName = current_player_array.name;
-          players[1][i].bowlingBalls = current_player_array.balls;
-          players[1][i].bowlingOvers = current_player_array.overs;
-          players[1][i].bowlingRuns = current_player_array.runs;
-          players[1][i].bowlingWkts = current_player_array.wks;
-          players[1][i].bowlingWides = current_player_array.wides;
-          players[1][i].bowlingNoBalls = current_player_array.noballs;
-          players[1][i].bowlingEconomyRate = current_player_array.economy_rate;
-          players[1][i].bowlingStrikeRate = current_player_array.strike_rate;
+          players[1][i].playerName = current_player_array.playerName;
+          players[1][i].bowlingBalls = current_player_array.bowlingBalls;
+          players[1][i].bowlingOvers = current_player_array.bowlingOvers;
+          players[1][i].bowlingRuns = current_player_array.bowlingRuns;
+          players[1][i].bowlingWkts = current_player_array.bowlingWkts;
+          players[1][i].bowlingWides = current_player_array.bowlingWides;
+          players[1][i].bowlingNoBalls = current_player_array.bowlingNoBalls;
+          players[1][i].bowlingEconomyRate = current_player_array.bowlingEconomyRate;
+          players[1][i].bowlingStrikeRate = current_player_array.battingStrikeRate;
         break;
       }
     }
@@ -79,13 +79,13 @@ app.factory('scoreService',['matchService', function(matchService){
        var new_batsman = {
           class: batsman_class,
           playerId: batsman_id,
-          name: batsman_name,
-          runs: players[0][i].battingRuns,
-          balls: players[0][i].battingBalls,
-          fours: players[0][i].battingFours,
-          sixes: players[0][i].battingSixes,
+          playerName: batsman_name,
+          battingRuns: players[0][i].battingRuns,
+          battingBalls: players[0][i].battingBalls,
+          battingFours: players[0][i].battingFours,
+          battingSixes: players[0][i].battingSixes,
           out: players[0][i].out,
-          strike_rate: players[0][i].battingStrikeRate,
+          battingStrikeRate: players[0][i].battingStrikeRate,
        };
        break;
      }
@@ -102,15 +102,16 @@ app.factory('scoreService',['matchService', function(matchService){
         var bowler_data = {
            class: bowler_class,
            playerId: bowler_id,
-           name: bowler_name,
-           runs: players[1][i].bowlingRuns,
-           balls: players[1][i].bowlingBalls,
-           overs: players[1][i].bowlingOvers,
-           wks: players[1][i].bowlingWkts,
-           wides: players[1][i].bowlingWides,
-           noballs : players[1][i].bowlingNoBalls,
-           economy_rate : players[1][i].bowlingEconomyRate,
-           strike_rate: players[1][i].bowlingStrikeRate,
+           playerName: bowler_name,
+           bowlingRuns: players[1][i].bowlingRuns,
+           bowlingBalls: players[1][i].bowlingBalls,
+           bowlingOvers: players[1][i].bowlingOvers,
+           bowlingWkts: players[1][i].bowlingWkts,
+           bowlingWides: players[1][i].bowlingWides,
+           bowlingNoBalls : players[1][i].bowlingNoBalls,
+           bowlingEconomyRate : players[1][i].bowlingEconomyRate,
+
+           bowlingStrikeRate: players[1][i].bowlingStrikeRate,
         };
         break;
       }
@@ -158,6 +159,8 @@ app.factory('scoreService',['matchService', function(matchService){
   }
 
   factory.endInnings = function(totalRuns, total_wickets, total_overs, total_balls) {
+    // this.updatePlayersBatsmen(currentBatsman, whichBatsman);
+    // this.updatePlayersBowlers(currentBowler);
     matchService.endInnings(totalRuns, total_wickets, total_overs, total_balls);
     last_ten_balls = [];
     next_ball = 0;

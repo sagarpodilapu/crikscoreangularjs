@@ -3,13 +3,10 @@
   <div class="common-sc score-details">
     <table class='table'>
       <tr data-ng-if="currentInnings == 'Second Innings'">
-        <th class='to-win text-left'>To win:</th>
-        <th class='to-win text-center'>
-          <span class='runs-left-span'>{{ runsLeft }}</span> in <span classs='balls-left-span'>{{ ballsLeft }}</span> balls
-        </th>
+        <th class='text-center' colspan='2' class='to-win text-left'>To win: <span class='runs-left-span'>{{ runsLeft }}</span> in <span class='balls-left-span'>{{ ballsLeft }}</span> balls</th>
       </tr>
       <tr>
-        <th colspan='2' class='text-center score'>{{ total_runs}} / {{ wickets }} <span class='score-overs'>({{ current_over }})</span> </th>
+        <th colspan='2' class='text-center score'>{{ total_runs}} / {{ wickets }} <span class='score-overs'>({{ current_over }} / {{matchDetails[0].totalOvers}})</span> </th>
       </tr>
       <tr class="current-batsman-name">
         <th class='last-six-balls'>Last 6 balls :</th>
@@ -79,12 +76,12 @@
       <label class="custom-control custom-radio">
         <input id="{{ current_indi_batsman_stats[0].playerId }}" name="whichBatsman" type="radio" class="custom-control-input disable-toggle" data-ng-click = "whichBatsman(current_indi_batsman_stats[0].playerId)" value="{{ current_indi_batsman_stats[0].playerId }}" disabled>
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{ current_indi_batsman_stats[0].name }}</span>
+        <span class="custom-control-description">{{ current_indi_batsman_stats[0].playerName }}</span>
       </label>
       <label class="custom-control custom-radio">
         <input id="{{ current_indi_batsman_stats[1].playerId }}" name="whichBatsman" type="radio" class="custom-control-input disable-toggle" data-ng-click = "whichBatsman(current_indi_batsman_stats[1].playerId)" value="{{ current_indi_batsman_stats[1].playerId }}" disabled>
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{ current_indi_batsman_stats[1].name }}</span>
+        <span class="custom-control-description">{{ current_indi_batsman_stats[1].playerName }}</span>
       </label>
     </div>
     <div class="current-action-inner run-action">
@@ -110,21 +107,21 @@
           <th>6</th>
         </tr>
         <tr data-ng-repeat="batsman in current_indi_batsman_stats" class="score-info {{ batsman.class }}">
-          <td class='text-left' id="{{ batsman.class }}">
-
+          <td class='text-left player-names' id="{{ batsman.class }}">
             <span ng-hide="editing">
-            {{ batsman.name }}
+            {{ batsman.playerName }}
             <i ng-click="editing = true" class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </span>
             <span ng-show="editing">
-              <input class='change-name' type="text" ng-model="batsman.name">
-              <i ng-click="editing = false" class="fa fa-check-square" aria-hidden="true"></i>
+              <input class='change-name' type="text" ng-model="batsman.playerName">
+              <!-- <i ng-click="editing = false" class="fa fa-check-square" aria-hidden="true"></i> -->
+              <span ng-click="editing = false">save</span>
             </span>
           </td>
-          <td class='text-left'>{{ batsman.runs }}</td>
-          <td class='text-left'>{{ batsman.balls }}</td>
-          <td class='text-left'>{{ batsman.fours }}</td>
-          <td class='text-left'>{{ batsman.sixes }}</td>
+          <td class='text-left'>{{ batsman.battingRuns }}</td>
+          <td class='text-left'>{{ batsman.battingBalls }}</td>
+          <td class='text-left'>{{ batsman.battingFours }}</td>
+          <td class='text-left'>{{ batsman.battingSixes }}</td>
           <!-- <td class='text-left'>{{ batsman.strike_rate }}</td> -->
           <!-- <td class='text-left'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->
         </tr>
@@ -142,20 +139,22 @@
           <th>Ec</th>
         </tr>
         <tr data-ng-repeat="bowler in current_indi_bowler_stats" class="score-info {{ bowler.class }}">
-          <td class='text-left' id="{{ bowler.class }}">
+          <td class='text-left player-names' id="{{ bowler.class }}">
             <span ng-hide="editing">
-            {{ bowler.name }}
+            {{ bowler.playerName }}
             <i ng-click="editing = true" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <!-- <button ng-click="editing = true" class='btn btn-primary btn-sm'>save</button> -->
             </span>
             <span ng-show="editing">
-              <input class='change-name' type="text" ng-model="bowler.name">
-              <i ng-click="editing = false" class="fa fa-check-square-o" aria-hidden="true"></i>
+              <input class='change-name' type="text" ng-model="bowler.playerName">
+              <!-- <i ng-click="editing = false" class="fa fa-check-square-o" aria-hidden="true"></i> -->
+              <span ng-click="editing = false">save</span>
             </span>
           </td>
-          <td class='text-left'>{{ bowler.overs }}</td>
-          <td class='text-left'>{{ bowler.runs }}</td>
-          <td class='text-left'>{{ bowler.wks }}</td>
-          <td class='text-left'>{{ bowler.economy_rate }}</td>
+          <td class='text-left'>{{ bowler.bowlingOvers }}</td>
+          <td class='text-left'>{{ bowler.bowlingRuns }}</td>
+          <td class='text-left'>{{ bowler.bowlingWkts }}</td>
+          <td class='text-left'>{{ bowler.bowlingEconomyRate }}</td>
           <!-- <td class='text-left'>{{ bowler.strike_rate }}</td> -->
           <!-- <td class='text-left'>{{ batsman.sixes }}</td> -->
           <!-- <td class='text-left'>{{ (batsman.runs/batsman.balls)*100 }}</td> -->

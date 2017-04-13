@@ -187,9 +187,6 @@ label.custom-control.custom-radio {
     font-size: 16px;
 }
 
-a.back-to-scoring {
-    float: right;
-}
 
 .one-score {
     font-weight: 700;
@@ -333,10 +330,6 @@ input[type=range]:focus::-ms-fill-upper {
     margin-top: 10px;
 }
 
-a.btn.btn-success.btn-sm.back-to-scoring.ng-scope {
-    float: right;
-}
-
 .current-innings.ng-binding {
     font-weight: 900;
     font-size: 16px;
@@ -396,6 +389,7 @@ a.btn.btn-warning.btn-sm.end-innings-btn.ng-scope {
 input.change-name{
     border: thin solid #aaa;
     padding-left: 5px;
+    width: 65%;
 }
 
 .fb-like span, iframe {
@@ -442,6 +436,12 @@ td.text-left {
 }
 .last-six-balls{
   width: 40%;
+}
+td.player-names {
+    width: 55%;
+}
+span.balls-left-span, span.runs-left-span {
+    font-size: 14px;
 }
 
 

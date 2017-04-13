@@ -96,16 +96,16 @@ $scope.insertScore = function(){
   var matchId = $scope.matchDetails[0].matchId;
   var current_event = '';
   current_event = $scope.current_run;
-  $scope.current_indi_batsman_stats[0].runs += $scope.current_run;
-  $scope.current_indi_bowler_stats[0].runs += $scope.current_run;
+  $scope.current_indi_batsman_stats[0].battingRuns += $scope.current_run;
+  $scope.current_indi_bowler_stats[0].bowlingRuns += $scope.current_run;
   $scope.current_ball_number++;
   if($scope.extra_run == 1) {
     if($scope.extra_type_id != 'no-extra') {
         current_event += $scope.extra_type[0];
-        $scope.current_indi_bowler_stats[0].runs += $scope.extra_run;
+        $scope.current_indi_bowler_stats[0].bowlingRuns += $scope.extra_run;
         $scope.current_ball_number--;
-        $scope.current_indi_bowler_stats[0].balls--;
-        $scope.current_indi_batsman_stats[0].balls--;
+        $scope.current_indi_bowler_stats[0].battingBalls--;
+        $scope.current_indi_batsman_stats[0].bowlingBalls--;
     }
   }
   if($scope.out) {
@@ -117,28 +117,28 @@ $scope.insertScore = function(){
   }
   var current_run_local = $scope.current_run;
   var current_ball_local = $scope.current_ball_number;
-  $scope.current_indi_batsman_stats[0].balls++;
-  $scope.current_indi_bowler_stats[0].balls++;
-  var strike_rate = $scope.current_indi_batsman_stats[0].runs/$scope.current_indi_batsman_stats[0].balls;
+  $scope.current_indi_batsman_stats[0].battingBalls++;
+  $scope.current_indi_bowler_stats[0].bowlingBalls++;
+  var strike_rate = $scope.current_indi_batsman_stats[0].battingRuns/$scope.current_indi_batsman_stats[0].battingBalls;
   strike_rate = strike_rate.toFixed(2);
-  $scope.current_indi_batsman_stats[0].strike_rate = strike_rate*100;
-  if($scope.current_indi_bowler_stats[0].balls === 0) {
-      $scope.current_indi_bowler_stats[0].economy_rate = '-';
+  $scope.current_indi_batsman_stats[0].battingStrikeRate = strike_rate*100;
+  if($scope.current_indi_bowler_stats[0].bowlingBalls === 0) {
+      $scope.current_indi_bowler_stats[0].bowlingEconomyRate = '-';
   }else {
-    $scope.current_indi_bowler_stats[0].economy_rate = (($scope.current_indi_bowler_stats[0].runs/$scope.current_indi_bowler_stats[0].balls)*6).toFixed(2);
+    $scope.current_indi_bowler_stats[0].bowlingEconomyRate = (($scope.current_indi_bowler_stats[0].bowlingRuns/$scope.current_indi_bowler_stats[0].bowlingBalls)*6).toFixed(2);
   }
   if(current_run_local == 4) {
-    $scope.current_indi_batsman_stats[0].fours++;
+    $scope.current_indi_batsman_stats[0].battingFours++;
   }
   if(current_run_local == 6) {
-    $scope.current_indi_batsman_stats[0].sixes++;
+    $scope.current_indi_batsman_stats[0].battingSixes++;
   }
-  var current_bowler_balls = $scope.current_indi_bowler_stats[0].balls;
-  $scope.current_indi_bowler_stats[0].overs = Math.floor(current_bowler_balls/6) + "." + current_bowler_balls%6;
+  var current_bowler_balls = $scope.current_indi_bowler_stats[0].bowlingBalls;
+  $scope.current_indi_bowler_stats[0].bowlingOvers = Math.floor(current_bowler_balls/6) + "." + current_bowler_balls%6;
   $scope.total_runs += current_run_local + $scope.extra_run;
   if($scope.out){
     if($scope.extra_type_id == 'wicket') {
-      $scope.current_indi_bowler_stats[0].wks++;
+      $scope.current_indi_bowler_stats[0].bowlingWkts++;
     }
     $scope.wickets++;
     $scope.current_indi_batsman_stats[0].out = $scope.out;
@@ -155,13 +155,13 @@ $scope.insertScore = function(){
       current_ball_number : current_ball_local,
       runs : current_run_local,
       total_runs : $scope.total_runs,
-      batsman : $scope.current_indi_batsman_stats[0].name,
+      batsman : $scope.current_indi_batsman_stats[0].playerName,
       batsman_id: $scope.current_indi_batsman_stats[0].playerId,
-      batsman_runs: $scope.current_indi_batsman_stats[0].runs,
-      non_striker : $scope.current_indi_batsman_stats[1].name,
+      batsman_runs: $scope.current_indi_batsman_stats[0].battingRuns,
+      non_striker : $scope.current_indi_batsman_stats[1].playerName,
       non_striker_id: $scope.current_indi_batsman_stats[1].playerId,
-      non_striker_runs : $scope.current_indi_batsman_stats[1].runs,
-      bowler : $scope.current_indi_bowler_stats[0].name,
+      non_striker_runs : $scope.current_indi_batsman_stats[1].battingRuns,
+      bowler : $scope.current_indi_bowler_stats[0].playerName,
       bowler_id: $scope.current_indi_bowler_stats[0].playerId,
       extra: $scope.extra_type,
       out:$scope.out,
