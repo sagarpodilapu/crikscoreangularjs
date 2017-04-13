@@ -22,16 +22,16 @@
     matchService.insertMatch(total_players, total_overs);
     var matchId = $scope.matchDetails[0].matchId;
     $location.path('/'+matchId+'/first/scorecard');
-  }
+  };
 
   $scope.startMatch = function(){
     var matchId = $scope.matchDetails[0].matchId;
     $location.path('/'+matchId+'/selectBatsman');
-  }
+  };
 
   $scope.deletePlayer = function(id){
     matchService.deletePlayer(id);
-  }
+  };
 };
 
 controllers.scorecardController = function($scope, $routeParams, $location, scoreService) {
@@ -69,29 +69,25 @@ $scope.endInnings = function(){
   // $('body').html('').attr('class', 'loader');
   $('input').prop('disabled',true);
   $location.path('/'+matchId+'/inningsBreak');
-}
+};
 
 
-$scope.reload = function()
-{
+$scope.reload = function() {
    location.reload();
-
    $location.path('/addMatch');
-}
+};
 
 $scope.endMatch = function(){
   scoreService.endMatch($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
-
   $location.path('/'+matchId+'/matchEnded');
-}
+};
 
 $scope.selectedPlayer = function(player_id){
   $scope.currentPlayer = player_id;
-}
+};
 
 $scope.insertScore = function(){
-
   var score_details = [];
   var matchId = $scope.matchDetails[0].matchId;
   var current_event = '';
@@ -186,7 +182,7 @@ $scope.insertScore = function(){
       $scope.endInnings();
     }
   }else {
-    if($scope.out == true) {
+    if($scope.out === true) {
 
       $location.path('/'+matchId+'/changeBatsman');
     }
@@ -194,7 +190,7 @@ $scope.insertScore = function(){
     if(current_run_local%2 == 1) {
       $scope.changeStrike();
     }
-    if(current_ball_local % 6 == 0 && current_ball_local > 0 && $scope.extra_run != 1) {
+    if(current_ball_local % 6 === 0 && current_ball_local > 0 && $scope.extra_run !== 1) {
       if(!$scope.out) {
 
         $location.path('/'+matchId+'/changeBowler');
@@ -244,7 +240,7 @@ $scope.changeBatsman = function(){
   }else if($scope.current_indi_bowler_stats.length < 1) {
 
     $location.path('/'+matchId+'/changeBowler');
-  }else if(current_ball_local % 6 == 0 && current_ball_local > 0) {
+  }else if(current_ball_local % 6 === 0 && current_ball_local > 0) {
 
     $location.path('/'+matchId+'/changeBowler');
     $scope.changeStrike();
@@ -252,7 +248,7 @@ $scope.changeBatsman = function(){
 
     $location.path('/'+matchId+'/first/scorecard');
   }
-}
+};
 
 $scope.bowlerChange = function(){
   for(var bowler_index in $scope.players[1]) {
@@ -265,7 +261,7 @@ $scope.bowlerChange = function(){
   var matchId = $scope.matchDetails[0].matchId;
 
   $location.path('/'+matchId+'/first/scorecard');
-}
+};
 
 $scope.changeStrike = function(){
   if($scope.current_indi_batsman_stats.length > 1) {
@@ -273,7 +269,7 @@ $scope.changeStrike = function(){
     $scope.current_indi_batsman_stats[0].class = 'non-striker-name';
     $scope.current_indi_batsman_stats = $scope.current_indi_batsman_stats.reverse();
   }
-}
+};
 
 $scope.currentRun = function(element){
   $('.possible-runs button').attr('class','btn btn-default btn-sm');
@@ -288,17 +284,17 @@ $scope.currentRun = function(element){
   $('.submit-score').prop('disabled',false);
   var current_run = event.target.value;
   $scope.current_run = parseInt(current_run);
-  if(current_run == 0) {
+  if(current_run === 0) {
     event.target.className='btn-danger';
-  }else if (current_run == 4) {
+  }else if (current_run === 4) {
     event.target.className='btn-warning';
-  }else if (current_run == 6) {
+  }else if (current_run === 6) {
     event.target.className='btn-info';
   }else {
     event.target.className='btn-primary';
   }
   $('.disable-toggle').prop('disabled',false);
-}
+};
 
 $scope.addExtra = function(element){
     $('.no-extra').css('display','inline-block');
@@ -311,7 +307,7 @@ $scope.addExtra = function(element){
     if($scope.extra_type == 'noextra') {
       $scope.extra_run = 0;
     }
-}
+};
 
 $scope.addWicket = function(element){
   $('.not-out').css('display','inline-block');
@@ -341,15 +337,15 @@ $scope.addWicket = function(element){
       $scope.out = true;
     break;
   }
-}
+};
 
 $scope.whichBatsman = function(out_batsman){
   $scope.whoIsOut = out_batsman;
-}
+};
 
 $scope.deleteScore = function(id){
 
-}
+};
 
 
 };
@@ -369,7 +365,7 @@ controllers.navbarController = function($scope,$location) {
     } else {
       return false;
     }
-  }
+  };
 };
 
 app.controller(controllers);
