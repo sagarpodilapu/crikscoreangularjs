@@ -13,19 +13,21 @@
     $scope.players = matchService.getPlayers();
     $scope.matchDetails = matchService.getMatchDetails();
     $scope.teamNames = matchService.getTeams();
+    $('.current-action').removeClass('loader');
   }
 
   $scope.insertMatch = function(){
     var total_players = parseInt($scope.newMatch.totalPlayers);
     var total_overs = parseInt($scope.newMatch.totalOvers);
-
     matchService.insertMatch(total_players, total_overs);
     var matchId = $scope.matchDetails[0].matchId;
+    $('.new-player').addClass('loader');
     $location.path('/'+matchId+'/first/scorecard');
   };
 
   $scope.startMatch = function(){
     var matchId = $scope.matchDetails[0].matchId;
+    $('.new-player').addClass('loader');
     $location.path('/'+matchId+'/selectBatsman');
   };
 
@@ -34,7 +36,7 @@
   };
 };
 
-controllers.scorecardController = function($scope, $routeParams, $location, scoreService) {
+controllers.scorecardController = function($scope, $routeParams, $location, scoreService, $timeout) {
 init();
 
 var param1 = $routeParams.matchId;
@@ -61,12 +63,13 @@ function init(){
   $scope.currentInnings = scoreService.getCurrentInnings();
   $scope.runsLeft = $scope.matchDetails[0].firstInningsRuns - $scope.total_runs + 1;
   $scope.ballsLeft = $scope.matchDetails[0].totalOvers*6 - $scope.current_ball_number;
+  $('.current-action').removeClass('loader');
 }
 
 $scope.endInnings = function(){
   scoreService.endInnings($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
-  // $('body').html('').attr('class', 'loader');
+  $('.current-action').addClass('loader');
   $('input').prop('disabled',true);
   $location.path('/'+matchId+'/inningsBreak');
 };
@@ -80,6 +83,7 @@ $scope.reload = function() {
 $scope.endMatch = function(){
   scoreService.endMatch($scope.total_runs, $scope.wickets, $scope.current_over, $scope.current_ball_number);
   var matchId = $scope.matchDetails[0].matchId;
+  $('.current-action').addClass('loader');
   $location.path('/'+matchId+'/matchEnded');
 };
 
@@ -183,7 +187,8 @@ $scope.insertScore = function(){
     }
   }else {
     if($scope.out === true) {
-
+      $('.current-action').attr('class', 'loader');
+      // $timeout(function(){$location.path('/'+matchId+'/changeBatsman');}, 30000);
       $location.path('/'+matchId+'/changeBatsman');
     }
 
@@ -192,7 +197,7 @@ $scope.insertScore = function(){
     }
     if(current_ball_local % 6 === 0 && current_ball_local > 0 && $scope.extra_run !== 1) {
       if(!$scope.out) {
-
+        $('.current-action').addClass('loader');
         $location.path('/'+matchId+'/changeBowler');
       }
       $scope.changeStrike();
@@ -235,17 +240,17 @@ $scope.changeBatsman = function(){
   }
   scoreService.insertBatsman($scope.currentPlayer, batsman_name, batsman_class);
   if($scope.current_indi_batsman_stats.length < 2) {
-
+    $('.current-action').addClass('loader');
     $location.path('/'+matchId+'/changeBatsman');
   }else if($scope.current_indi_bowler_stats.length < 1) {
-
+    $('.current-action').addClass('loader');
     $location.path('/'+matchId+'/changeBowler');
   }else if(current_ball_local % 6 === 0 && current_ball_local > 0) {
-
+    $('.current-action').addClass('loader');
     $location.path('/'+matchId+'/changeBowler');
     $scope.changeStrike();
   }else {
-
+    $('.current-action').addClass('loader');
     $location.path('/'+matchId+'/first/scorecard');
   }
 };
@@ -259,7 +264,7 @@ $scope.bowlerChange = function(){
   var bowler_class = 'current-bowler-name';
   scoreService.insertBowler($scope.currentPlayer, bowler_name, bowler_class);
   var matchId = $scope.matchDetails[0].matchId;
-
+  $('.current-action').addClass('loader');
   $location.path('/'+matchId+'/first/scorecard');
 };
 

@@ -18,11 +18,11 @@ app.factory('scoreService',['matchService', function(matchService){
     current_over = Math.floor(current_ball_number/6) + "." + current_ball_number%6;
     next_ball = Math.floor(next_ball/6) + "." + next_ball%6;
     this.updatePlayersBatsmen(currentBatsman, whichBatsman);
-    if(scoreDetails.out == true) {
+    if(scoreDetails.out === true) {
       this.updateBatsmen(whichBatsman);
     }
     this.updatePlayersBowlers(currentBowler);
-  }
+  };
 
   factory.updatePlayersBatsmen = function(current_player_array, who_is_out){
     var players = this.getPlayers();
@@ -40,7 +40,7 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-  }
+  };
 
   factory.updatePlayersBowlers = function(current_player_array){
     var players = this.getPlayers();
@@ -58,7 +58,7 @@ app.factory('scoreService',['matchService', function(matchService){
         break;
       }
     }
-  }
+  };
 
   factory.updateBatsmen = function(player_id) {
     var current_indi_batsmen = this.getCurrentIndiBatsmen();
@@ -69,7 +69,7 @@ app.factory('scoreService',['matchService', function(matchService){
     }
 
     this.setCurrentIndiBatsmen(current_indi_batsmen);
-  }
+  };
 
   factory.insertBatsman = function(batsman_id, batsman_name, batsman_class){
    var current_indi_batsmen = this.getCurrentIndiBatsmen();
@@ -92,7 +92,7 @@ app.factory('scoreService',['matchService', function(matchService){
    }
    current_indi_batsmen.unshift(new_batsman);
    this.setCurrentIndiBatsmen(current_indi_batsmen);
- }
+ };
 
   factory.insertBowler = function(bowler_id, bowler_name, bowler_class){
     var current_indi_bowlers = this.getCurrentIndiBowlers();
