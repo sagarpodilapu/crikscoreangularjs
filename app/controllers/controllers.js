@@ -21,13 +21,13 @@
     var total_overs = parseInt($scope.newMatch.totalOvers);
     matchService.insertMatch(total_players, total_overs);
     var matchId = $scope.matchDetails[0].matchId;
-    $('.new-player').addClass('loader');
+    $('.add-match').addClass('loader');
     $location.path('/'+matchId+'/first/scorecard');
   };
 
   $scope.startMatch = function(){
     var matchId = $scope.matchDetails[0].matchId;
-    $('.new-player').addClass('loader');
+    $('.add-match').addClass('loader');
     $location.path('/'+matchId+'/selectBatsman');
   };
 
