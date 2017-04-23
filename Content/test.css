@@ -392,6 +392,12 @@ input.change-name{
     width: 65%;
 }
 
+input.change-team-name{
+    border: thin solid #aaa;
+    padding-left: 5px;
+    width: 45%;
+}
+
 .fb-like span, iframe {
     width: 100%!important;
 }

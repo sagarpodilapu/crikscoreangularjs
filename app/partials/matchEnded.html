@@ -1,11 +1,4 @@
 <div class="scorecard-details">
-  <h3 class='innings-break text-center'>Match Ended</h3>
-  <div class='first-innings-score'>{{ matchDetails[0].teamOne}} -  {{ matchDetails[0].firstInningsRuns }} / {{ matchDetails[0].firstInningsWkts }}
-    <span class='current-overs'> Overs - {{ matchDetails[0].firstInningsOvers }} </span>
-  </div>
-  <div class='second-innings-score'>{{ matchDetails[0].teamTwo}} -  {{ matchDetails[0].secondInningsRuns }} / {{ matchDetails[0].secondInningsWkts }}
-    <span class='current-overs'> Overs - {{ matchDetails[0].secondInningsOvers }} </span>
-  </div>
   <div class='match-result text-center'>Winner:
     <span class='match-result-winner'>
       {{ matchDetails[0].winner }}
@@ -15,7 +8,10 @@
 <div class="container full-scorecard">
   <div class="two-score" data-ng-if = "currentInnings == 'Second Innings'">
     <div class='three-score'>
-      <span class='current-innings'>{{ matchDetails[0].teamTwo }}</span>
+      <span class='current-innings'>
+        {{ matchDetails[0].teamTwo}} -  {{ matchDetails[0].secondInningsRuns }} / {{ matchDetails[0].secondInningsWkts }}
+        <span class='current-overs'> Overs - {{ matchDetails[0].secondInningsOvers }} </span>
+      </span>
     </div>
     <div class="batting-full-scorecard">
       <table class='table'>
@@ -72,7 +68,10 @@
       </table>
     </div>
     <div class='three-score'>
-      <span class='current-innings'>{{ matchDetails[0].teamOne }}</span>
+      <span class='current-innings'>
+        {{ matchDetails[0].teamOne}} -  {{ matchDetails[0].firstInningsRuns }} / {{ matchDetails[0].firstInningsWkts }}
+        <span class='current-overs'> Overs - {{ matchDetails[0].firstInningsOvers }} </span>
+      </span>
     </div>
     <div class="batting-full-scorecard">
       <table class='table'>
