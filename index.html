@@ -53,5 +53,18 @@
       };
       firebase.initializeApp(config);
     </script> -->
+    <script>
+
+    $(function() {
+      // Code using $ as usual goes here; the actual jQuery object is jq2
+      $('.start-match').on('click',function() {
+        $(this).prop('disabled',true);
+      });
+
+      $('.start-second-innings').on('click',function() {
+        $(this.prop('disabled',true));
+      });
+    });
+    </script>
   </body>
 </html>
