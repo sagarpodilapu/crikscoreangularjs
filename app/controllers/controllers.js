@@ -98,13 +98,20 @@ $scope.insertScore = function(){
   $scope.current_indi_bowler_stats[0].bowlingRuns += $scope.current_run;
   $scope.current_ball_number++;
   if($scope.extra_run == 1) {
-    if($scope.extra_type_id != 'no-extra') {
+    current_event += $scope.extra_type[0];
+    if($scope.extra_type_id !== 'no-extra' && $scope.extra_type_id !== 'byes') {
+        console.log($scope.extra_type_id);
         current_event += $scope.extra_type[0];
         $scope.current_indi_bowler_stats[0].bowlingRuns += $scope.extra_run;
         $scope.current_ball_number--;
         $scope.current_indi_bowler_stats[0].battingBalls--;
         $scope.current_indi_batsman_stats[0].bowlingBalls--;
     }
+  }
+  if($scope.extra_type_id === 'byes') {
+    console.log($scope.current_run);
+    $scope.current_indi_batsman_stats[0].battingRuns -= $scope.current_run;
+    $scope.current_indi_bowler_stats[0].bowlingRuns -= $scope.current_run;
   }
   if($scope.out) {
     current_event += 'wk';
@@ -213,17 +220,9 @@ $scope.insertScore = function(){
     $('.wicket').css('display','inline-block');
     $scope.extra_type = '';
     $scope.extra_run = 0;
-    // $scope.players = scoreService.getPlayers();
-    // $scope.current_indi_batsman_stats = scoreService.getCurrentIndiBatsmen();
-    // $scope.current_indi_bowler_stats = scoreService.getCurrentIndiBowlers();
-    // $scope.total_runs = scoreService.getTotalRuns();
-    // $scope.wickets = scoreService.getWickets();
-    // $scope.current_ball_number = scoreService.getCurrentBallNumber();
-    // $scope.current_over = scoreService.getCurrentOver();
-    // $scope.next_ball = scoreService.getNextBall();
     $scope.out = false;
+    $scope.extra_type_id = '';
   }
-  //
 
 };
 
@@ -307,7 +306,8 @@ $scope.addExtra = function(element){
     if($scope.extra_type == 'noball') {
       $('.wicket').css('display','none');
     }
-    if($scope.extra_type == 'noextra') {
+    console.log($scope.extra_type);
+    if($scope.extra_type == 'noextra' || $scope.extra_type == 'bye') {
       $scope.extra_run = 0;
     }
 };
