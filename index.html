@@ -57,12 +57,12 @@
 
     $(function() {
       // Code using $ as usual goes here; the actual jQuery object is jq2
-      $('.start-match').on('click',function() {
-        $(this).prop('disabled',true);
+      $('body').on('click','.start-match',function() {
+        $(this).attr('disabled',true);
       });
 
-      $('.start-second-innings').on('click',function() {
-        $(this).prop('disabled',true);
+      $('body').on('click', '.start-second-innings',function(event) {
+        $(this).attr('disabled',true);
       });
     });
     </script>
